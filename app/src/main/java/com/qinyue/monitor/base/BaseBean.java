@@ -11,7 +11,7 @@ public class BaseBean<T> implements Serializable {
     private String msg = "";
     private T result = null;
 
-
+//
     public int getCode() {
         return code;
     }
