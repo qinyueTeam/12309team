@@ -38,6 +38,8 @@ public class EditMyMsgActivty extends BaseActivity {
     RoundButton verifyBut;
     private CountDownButtonHelper mCountDownHelper;
     private int checkIndex = -1;
+
+    
     @Override
     public String initTitleText() {
         return "修改信息";
