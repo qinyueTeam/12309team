@@ -41,6 +41,9 @@
         <activity android:name=".login.PwdLoginActivity" />
         <activity android:name=".my.MyMsgActivity" />
         <activity android:name=".my.EditMyMsgActivty" />
+        <activity android:name=".work.AccusationActivity" />
+        <activity android:name=".work.CriminalComPlaintActivity" />
+        <activity android:name=".work.StateCompensationActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
