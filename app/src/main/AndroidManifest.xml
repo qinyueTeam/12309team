@@ -44,6 +44,10 @@
         <activity android:name=".work.AccusationActivity" />
         <activity android:name=".work.CriminalComPlaintActivity" />
         <activity android:name=".work.StateCompensationActivity" />
+        <activity android:name=".my.MyXFActivity" />
+        <activity android:name=".my.MyYYActivity" />
+        <activity android:name=".my.QzyjActivity" />
+        <activity android:name=".my.JczActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

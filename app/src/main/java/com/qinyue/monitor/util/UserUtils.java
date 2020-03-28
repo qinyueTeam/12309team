@@ -27,6 +27,14 @@ public class UserUtils {
             return "";
         }
     }
+    public static String getId(){
+        MyUserBean object = SPUtils.getObject(SPUtils.getDefaultSharedPreferences(), TagConstant.USERTAG, MyUserBean.class);
+        if (object!=null&&object.getBaseUser()!=null){
+            return object.getBaseUser().getId();
+        }else {
+            return "";
+        }
+    }
     public static String getSex(){
         MyUserBean object = SPUtils.getObject(SPUtils.getDefaultSharedPreferences(), TagConstant.USERTAG, MyUserBean.class);
         if (object!=null&&object.getBaseUser()!=null){

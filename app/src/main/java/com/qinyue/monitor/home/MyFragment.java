@@ -13,6 +13,9 @@ import com.qinyue.monitor.login.RegisterActivity;
 import com.qinyue.monitor.login.UserBean;
 import com.qinyue.monitor.login.VerificationActivity;
 import com.qinyue.monitor.my.MyMsgActivity;
+import com.qinyue.monitor.my.MyXFActivity;
+import com.qinyue.monitor.my.MyYYActivity;
+import com.qinyue.monitor.my.QzyjActivity;
 import com.qinyue.monitor.util.UserUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
@@ -43,6 +46,7 @@ public class MyFragment extends Fragment {
     @BindView(R.id.view_logout)
     SuperTextView logoutView;
     public static final MutableLiveData<Boolean> logTagChanged = new MutableLiveData<>();
+    public static final MutableLiveData<Boolean> refreshMsg = new MutableLiveData<>();
 
     public MyFragment() {
 
@@ -55,6 +59,7 @@ public class MyFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_my, container, false);
         unbinder = ButterKnife.bind(this, view);
         mainActivity = (MainActivity) getActivity();
+        refreshMsg.setValue(false);
         initOnCliclek();
         return view;
     }
@@ -79,6 +84,13 @@ public class MyFragment extends Fragment {
                 logoutView.setVisibility(View.GONE);
             }
         });
+        refreshMsg.observe(this,aBoolean -> {
+            refresh();
+        });
+    }
+
+    private void refresh(){
+        loginText.setText(UserUtils.getRealName() + "\n" + UserUtils.getUserName().replaceAll(TagConstant.POHNETOX, TagConstant.POHNETOY));
     }
 
     @OnClick({R.id.view_login, R.id.view_my, R.id.view_msg, R.id.view_xf, R.id.view_yy, R.id.view_qzyjx, R.id.view_jczxx, R.id.view_logout})
@@ -91,9 +103,8 @@ public class MyFragment extends Fragment {
             }
             break;
             case R.id.view_my: {//我的信息
-                startActivity(new Intent(mainActivity, MyMsgActivity.class));
                 if (UserUtils.isLogin()) {
-
+                    startActivity(new Intent(mainActivity, MyMsgActivity.class));
                 } else {
                     XToast.error(mainActivity, "请登录").show();
                 }
@@ -104,11 +115,19 @@ public class MyFragment extends Fragment {
             }
             break;
             case R.id.view_xf: {//我的信访
-
+                if (UserUtils.isLogin()) {
+                    startActivity(new Intent(mainActivity, MyXFActivity.class));
+                } else {
+                    XToast.error(mainActivity, "请登录").show();
+                }
             }
             break;
             case R.id.view_yy: {//我的预约
-
+                if (UserUtils.isLogin()) {
+                    startActivity(new Intent(mainActivity, MyYYActivity.class));
+                } else {
+                    XToast.error(mainActivity, "请登录").show();
+                }
             }
             break;
             case R.id.view_jczxx: {//检察长信箱
@@ -120,7 +139,11 @@ public class MyFragment extends Fragment {
             }
             break;
             case R.id.view_qzyjx: {//群众意见箱
-
+                if (UserUtils.isLogin()) {
+                    startActivity(new Intent(mainActivity, QzyjActivity.class));
+                } else {
+                    XToast.error(mainActivity, "请登录").show();
+                }
             }
             break;
         }

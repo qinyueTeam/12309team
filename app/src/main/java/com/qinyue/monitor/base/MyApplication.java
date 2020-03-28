@@ -6,10 +6,13 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.xuexiang.xui.XUI;
 import com.xuexiang.xutil.XUtil;
@@ -68,13 +71,13 @@ public class MyApplication extends MultiDexApplication {
             }
         });
         //设置全局的Footer构建器
-//            SmartRefreshLayout.setDefaultRefreshFooterCreater(new DefaultRefreshFooterCreater() {
-//                @Override
-//                public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-//                    //指定为经典Footer，默认是 BallPulseFooter
-//                    return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
-//                }
-//            });
+            SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+                @Override
+                public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                    //指定为经典Footer，默认是 BallPulseFooter
+                    return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
+                }
+            });
     }
     /**
      * 设置https 访问的时候对所有证书都进行信任
