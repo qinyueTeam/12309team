@@ -1,0 +1,2133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/default_bkg"
+    android:layout_height="match_parent"
+    >
+    <include
+        android:id="@+id/titleview"
+        layout="@layout/layout_title"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/kgbd_10"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="未成年人信息"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textSize="@dimen/dp_15"
+                    android:textColor="#33607d"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFF"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_name">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="姓名"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_xm"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_xm"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入姓名"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_name"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_wcnrsf">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="未成年人身份"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_wcnrsf"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_wcnrsf"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="false"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wcnrsf"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_zym">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="曾用名"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_zym"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_zym"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="曾用名"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_zym"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_xb">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="性别"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_xb"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_xb"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择性别"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_xb"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_ch">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="绰号"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_ch"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_ch"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="绰号"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_ch"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_csrq">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="出生日期"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_csrq"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_csrq"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_csrq"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                    android:id="@+id/rl_zjlx">
+
+                <TextView
+                    android:paddingTop="@dimen/dp_10"
+                    android:paddingBottom="@dimen/dp_10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="证件类型"
+                    android:textColor="#000"
+                    android:layout_marginLeft="@dimen/dp_15"
+                    android:id="@+id/txt_zjlx"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="*"
+                    android:textColor="@color/xui_config_color_red"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_toRightOf="@+id/txt_zjlx"
+                    android:layout_centerVertical="true"
+                    />
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:hint="请选择证件类型"
+                    android:background="@null"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:textColor="#000"
+                    android:editable="false"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/et_zjlx"
+                    />
+
+            </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_zjhm">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="证件号码"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_zjhm"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_zjhm"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入你的证件号码"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_zjhm"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_mz">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="民族"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_mz"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_mz"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择民族"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="false"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_mz"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_gj">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="国籍"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_gj"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_gj"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择国籍"
+                        android:background="@null"
+                        android:editable="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_gj"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_sqjz_phone">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="户籍所在地"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqjz_phone"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqjz_phone"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择户籍所在地"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_sqjz_phone"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_sqjz_zsd">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住所地"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqjz_zsd"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqjz_zsd"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择住所地"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_sqjz_zsd"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_zsddz">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住所地详细地址"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_zsddz"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_zsddz"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="住所地详细地址"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_zsddz"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_sqjz_gzdw">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作单位/学校"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqjz_gzdw"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqjz_gzdw"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入工作单位或学校"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_sqjz_gzdw"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_gzdwxxszd">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="工作单位/学校学校所在地"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_gzdwxxszd"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_gzdwxxszd"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:editable="true"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_gzdwxxszd"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_fddlr">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="法定代理人"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_fddlr"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_fddlr"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入法定代理人"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_fddlr"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_jhqk">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="监护情况"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_jhqk"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_jhqk"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_jhqk"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_jsd_sqjz">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="案发时年龄"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_jsd_sqjz"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_jsd_sqjz"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="true"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_jsd_sqjz"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/kgbd_10"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请人信息"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textSize="@dimen/dp_15"
+                    android:textColor="#33607d"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFF"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_name">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="姓名或单位名称"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_xm"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_xm"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入被控告人姓名"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_name"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_wcnrgx">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="与未成年人关系"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_wcnrgx"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_wcnrgx"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wcnrgx"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_xb">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="性别"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_xb"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_xb"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择性别"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_xb"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_wzjlx">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="证件类型"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_wzjlx"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_wzjlx"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择证件类型"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wzjlx"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_wzjhm">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="证件号码"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_wzjhm"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_wzjhm"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入你的证件号码"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wzjhm"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_wmz">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="民族"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_wmz"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_wmz"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择民族"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:editable="false"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_wmz"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_gj">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="国籍"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_gj"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_gj"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择国籍"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_gj"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_zw">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="职务"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_zw"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_zw"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择的职务"
+                        android:background="@null"
+                        android:editable="false"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_zw"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_zj">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="所在地区"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_zj"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_zj"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_zj"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_sf">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="单位/住址"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_sf"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_sf"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入单位/住址"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_sf"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_bkgr_zxwy">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="联系电话"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_zxwy"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_zxwy"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入联系电话"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_bkgr_zxwy"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/dp_10">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/kgbd_10"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:layout_gravity="center_vertical"
+                    />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请救助基本内容"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:textSize="@dimen/dp_15"
+                    android:textColor="#33607d"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#FFF"
+                >
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="接收的检察院"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_jsdjcy"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_jsdjcy"
+                        android:layout_centerVertical="true"
+                        android:visibility="invisible"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint=""
+                        android:text="北京市院"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_jsjcy"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="被救助人类别"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_afd"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_afd"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_afd"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原案案由"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_yaay"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_yaay"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_yaay"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原办案检察机关名称"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_ybajc"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_ybajc"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_ybajc"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请救助类别"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqjzlb"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqjzlb"
+                        android:layout_centerVertical="true"
+                        android:visibility="gone"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择"
+                        android:editable="false"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_sqjzlb"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请理由"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqly"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqly"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请输入"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/et_sqly"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="原案情摘要"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_bkgr_nr"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_bkgr_nr"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择国籍"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:visibility="gone"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_content">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200"
+                        android:gravity="top|left"
+                        android:hint="内容字数不超过1000字"
+                        android:id="@+id/et_input"
+                        android:background="@null"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/"
+                            android:textColor="@color/xui_btn_gray_normal_color"
+                            android:id="@+id/inputing_tv"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000"
+                            android:textColor="@color/xui_btn_gray_normal_color"
+                            android:id="@+id/total_tv"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:paddingTop="@dimen/dp_10"
+                        android:paddingBottom="@dimen/dp_10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="申请救助内容"
+                        android:textColor="#000"
+                        android:layout_marginLeft="@dimen/dp_15"
+                        android:id="@+id/txt_sqjznr"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="*"
+                        android:textColor="@color/xui_config_color_red"
+                        android:layout_marginLeft="@dimen/dp_5"
+                        android:layout_toRightOf="@+id/txt_sqjznr"
+                        android:layout_centerVertical="true"
+                        />
+
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:hint="请选择国籍"
+                        android:background="@null"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:textColor="#000"
+                        android:editable="false"
+                        android:visibility="gone"
+                        android:layout_marginRight="@dimen/dp_10"
+                        android:layout_centerVertical="true"
+                        />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rl_content_sqjznr">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/dp_200"
+                        android:gravity="top|left"
+                        android:hint="内容字数不超过1000字"
+                        android:id="@+id/et_input_sqjznr"
+                        android:background="@null"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginRight="@dimen/dp_10">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0/"
+                            android:textColor="@color/xui_btn_gray_normal_color"
+                            android:id="@+id/inputing_tv_sqjznr"
+                            />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1000"
+                            android:textColor="@color/xui_btn_gray_normal_color"
+                            android:id="@+id/total_tv_sqjznr"
+                            />
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10">
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="上传相关材料"
+                            android:textColor="#000"
+                            />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@mipmap/add_image"
+                            android:background="@drawable/bg_border"
+                            android:layout_marginTop="@dimen/dp_5"
+                            android:id="@+id/img_qtcl"
+                            />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_1"
+                    android:background="@color/xui_btn_gray_normal_color"
+                    />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:paddingLeft="@dimen/dp_15"
+                android:paddingRight="@dimen/dp_15"
+                android:paddingTop="@dimen/dp_20"
+                android:visibility="gone"
+                android:text="注意:材料只允许提交jpg、jpeg、png格式图片，每张图片大小不超过10M。"
+                android:textColor="@color/xui_config_color_red"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFF"
+                android:paddingTop="@dimen/dp_30"
+                android:paddingBottom="@dimen/dp_30"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/dp_30"
+                        android:text="提交"
+                        android:textColor="@color/picture_color_white"
+                        android:gravity="center"
+                        android:background="@drawable/button_shape"
+                        android:id="@+id/btn_submit"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="100dp"
+                        android:layout_height="@dimen/dp_30"
+                        android:text="取消"
+                        android:textColor="@color/picture_color_white"
+                        android:gravity="center"
+                        android:background="@drawable/button_shape"
+                        android:id="@+id/btn_cancel"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

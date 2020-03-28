@@ -13,8 +13,12 @@ import com.qinyue.monitor.R;
 import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.login.RegisterActivity;
 import com.qinyue.monitor.work.AccusationActivity;
+import com.qinyue.monitor.work.AdministrativeLitigationActivity;
+import com.qinyue.monitor.work.CivilActionActivity;
 import com.qinyue.monitor.work.CriminalComPlaintActivity;
+import com.qinyue.monitor.work.OtherActivity;
 import com.qinyue.monitor.work.StateCompensationActivity;
+import com.qinyue.monitor.work.UnderageActivity;
 import com.xuexiang.xui.widget.toast.XToast;
 
 import androidx.annotation.NonNull;
@@ -77,7 +81,7 @@ public class WorkFragment extends Fragment{
         initOnCliclek();
         return view;
     }
-@OnClick({R.id.ll_kg,R.id.ll_xsss,R.id.ll_gjpc})
+@OnClick({R.id.ll_kg,R.id.ll_xsss,R.id.ll_gjpc,R.id.ll_msss,R.id.xzss,R.id.img_wcn,R.id.ll_qt})
 public void onClick(View view){
     this.view = view;
     switch (view.getId()){
@@ -91,6 +95,22 @@ public void onClick(View view){
         }break;
         case R.id.ll_gjpc:{
             Intent intent = new Intent(getActivity(), StateCompensationActivity.class);//要替换须知界面
+            startActivity(intent);
+        }break;
+        case R.id.ll_msss:{
+            Intent intent = new Intent(getActivity(), CivilActionActivity.class);//要替换须知界面
+            startActivity(intent);
+        }break;
+        case R.id.xzss:{
+            Intent intent = new Intent(getActivity(), AdministrativeLitigationActivity.class);//要替换须知界面
+            startActivity(intent);
+        }break;
+        case R.id.ll_qt:{
+            Intent intent = new Intent(getActivity(), OtherActivity.class);//要替换须知界面
+            startActivity(intent);
+        }break;
+        case R.id.img_wcn:{
+            Intent intent = new Intent(getActivity(), UnderageActivity.class);//要替换须知界面
             startActivity(intent);
         }break;
     }
