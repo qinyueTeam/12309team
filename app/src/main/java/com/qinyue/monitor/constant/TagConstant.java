@@ -9,6 +9,7 @@ public class TagConstant {
     public static final String FIRSTSTART = "first_start";
     public static final String USERTAG = "user";
     public static final String BASEURL = "https://www.ricitech.com/riciInterface";
+    public static final String BASEURL2 = "https://www.ricitech.com/microInspection";
     public static final String BASEBANNER_URL = "https://www.ricitech.com/microInspection/assets/banner.png";
     public static final String APPID = "rici_miniApp";
     public static final String CODE = "110000";

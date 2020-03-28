@@ -56,6 +56,7 @@
         <activity android:name=".my.MyYYActivity" />
         <activity android:name=".my.QzyjActivity" />
         <activity android:name=".my.JczActivity" />
+        <activity android:name=".my.SpyyActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

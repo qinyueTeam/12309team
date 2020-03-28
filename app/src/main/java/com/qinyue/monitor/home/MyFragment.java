@@ -12,6 +12,7 @@ import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.login.RegisterActivity;
 import com.qinyue.monitor.login.UserBean;
 import com.qinyue.monitor.login.VerificationActivity;
+import com.qinyue.monitor.my.JczActivity;
 import com.qinyue.monitor.my.MyMsgActivity;
 import com.qinyue.monitor.my.MyXFActivity;
 import com.qinyue.monitor.my.MyYYActivity;
@@ -131,7 +132,11 @@ public class MyFragment extends Fragment {
             }
             break;
             case R.id.view_jczxx: {//检察长信箱
-
+                if (UserUtils.isLogin()) {
+                    startActivity(new Intent(mainActivity, JczActivity.class));
+                } else {
+                    XToast.error(mainActivity, "请登录").show();
+                }
             }
             break;
             case R.id.view_logout: {//退出登录

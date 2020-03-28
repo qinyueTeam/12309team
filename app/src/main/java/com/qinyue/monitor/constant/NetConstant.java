@@ -20,4 +20,8 @@ public class NetConstant {
     public static final String petitionList = "/rici/petitionList";
     //我的意见建议列表
     public static final String suggestionList = "/rici/suggestionList";
+    //预约接访列表
+    public static final String appointmentList = "/rici/appointmentList";
+    //新闻列表
+    public static final String newsList = "/announceShow/show";
 }

@@ -69,4 +69,6 @@ dependencies {
     //万能recyclerview适配器
     implementation 'com.zhy:base-rvadapter:3.0.3'
     implementation 'com.zhy:base-adapter:3.0.3'
+    implementation 'com.google.android.material:material:1.2.0-alpha05'
+
 }
