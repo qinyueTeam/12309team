@@ -14,4 +14,10 @@ public class NetConstant {
     public static final String getCode = "/rici/sendSmsCode";
     //用户注册
     public static final String saveUser = "/rici/saveUser";
+    //修改用户信息
+    public static final String saveInfo = "/rici/saveInfo";
+    //信访列表
+    public static final String petitionList = "/rici/petitionList";
+    //我的意见建议列表
+    public static final String suggestionList = "/rici/suggestionList";
 }

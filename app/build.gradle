@@ -47,13 +47,13 @@ dependencies {
     implementation 'com.blankj:utilcodex:1.26.0'
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.7'
     //刷新
-    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-18'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
     //图片选择框架
     implementation('com.github.LuckSiege.PictureSelector:picture_library:v2.5.0') {
 
     }
     //tab
-    implementation 'com.github.hackware1993:MagicIndicator:1.5.0'
+    implementation 'com.github.hackware1993:MagicIndicator:1.6.0'
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     //图片加载
@@ -66,4 +66,7 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'  //切换主线程，Android工程必须
     //工具类
 //    implementation 'com.blankj:utilcodex:1.26.0'
+    //万能recyclerview适配器
+    implementation 'com.zhy:base-rvadapter:3.0.3'
+    implementation 'com.zhy:base-adapter:3.0.3'
 }

@@ -1,5 +1,6 @@
 package com.qinyue.monitor.my;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -10,6 +11,7 @@ import com.qinyue.monitor.util.UserUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -40,14 +42,6 @@ public class MyMsgActivity extends BaseActivity{
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (UserUtils.isLogin()){
-            nameView.setRightString(UserUtils.getRealName());
-            sexView.setRightString(UserUtils.getSex());
-            phoneView.setRightString(UserUtils.getUserName().replaceAll(TagConstant.POHNETOX,TagConstant.POHNETOY));
-            idCardView.setRightString(UserUtils.getIdCard().replaceAll(TagConstant.IDCARDTOX,TagConstant.IDCARDTOY));
-            emailView.setRightString(UserUtils.getEmail());
-            addressView.setRightString(UserUtils.getAddress());
-        }
     }
 
     @Override
@@ -59,13 +53,28 @@ public class MyMsgActivity extends BaseActivity{
     public void onClick(View view){
         switch (view.getId()){
             case R.id.view_edit:{//修改
-                starActivity(EditMyMsgActivty.class);
+                startActivityForResult(new Intent(this,EditMyMsgActivty.class),100);
             }break;
         }
     }
     @Override
     protected void initview() {
+        if (UserUtils.isLogin()){
+            nameView.setRightString(UserUtils.getRealName());
+            sexView.setRightString(UserUtils.getSex());
+            phoneView.setRightString(UserUtils.getUserName().replaceAll(TagConstant.POHNETOX,TagConstant.POHNETOY));
+            idCardView.setRightString(UserUtils.getIdCard().replaceAll(TagConstant.IDCARDTOX,TagConstant.IDCARDTOY));
+            emailView.setRightString(UserUtils.getEmail());
+            addressView.setRightString(UserUtils.getAddress());
+        }
+    }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode==100&&resultCode==102){
+            initview();
+        }
     }
 
     @Override

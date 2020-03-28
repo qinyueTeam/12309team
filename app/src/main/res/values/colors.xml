@@ -18,4 +18,5 @@
     <color name="default_bkg">#EBE9EB</color>
     <color name="but_bkg_start">#197DAA</color>
     <color name="but_bkg_end">#44C8FA</color>
+    <color name="transparent">#00000000</color>
 </resources>

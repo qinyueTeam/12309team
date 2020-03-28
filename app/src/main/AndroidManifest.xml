@@ -44,12 +44,18 @@
         <activity android:name=".work.AccusationActivity" />
         <activity android:name=".work.CriminalComPlaintActivity" />
         <activity android:name=".work.StateCompensationActivity" />
+
         <activity android:name=".work.CivilActionActivity" />
         <activity android:name=".work.AdministrativeLitigationActivity" />
         <activity android:name=".work.UnderageActivity" />
         <activity android:name=".work.UnderageAccusationActivity" />
         <activity android:name=".work.UnderageComplaintActivity" />
         <activity android:name=".work.ApplyHelpActivity" />
+
+        <activity android:name=".my.MyXFActivity" />
+        <activity android:name=".my.MyYYActivity" />
+        <activity android:name=".my.QzyjActivity" />
+        <activity android:name=".my.JczActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
