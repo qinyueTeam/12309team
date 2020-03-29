@@ -22,6 +22,16 @@ public class NetConstant {
     public static final String suggestionList = "/rici/suggestionList";
     //预约接访列表
     public static final String appointmentList = "/rici/appointmentList";
-    //新闻列表
+    //新闻/法律法规列表
     public static final String newsList = "/announceShow/show";
+    //重要案件信息列表
+    public static final String caseList = "/rici/caseList";
+    //法律文书列表
+    public static final String lawDocList = "/rici/lawDocList";
+    //案件详情
+    public static final String caseDetail = "/rici/caseDetail";
+    //文书详情
+    public static final String lawDocDetail = "/rici/lawDocDetail";
+    //检察长信箱列表/详情
+    public static final String letterShow = "/announceShow/letterShow";
 }

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+    <include
+        android:id="@+id/titleview"
+        layout="@layout/layout_title"/>
+    <com.xuexiang.xui.widget.statelayout.StatefulLayout
+        android:id="@+id/ll_stateful"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:stf_animationEnabled="false"
+        app:stf_inAnimation="@android:anim/slide_in_left"
+        app:stf_outAnimation="@android:anim/slide_out_right">
+    <LinearLayout
+        android:id="@+id/lin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:padding="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:textColor="@color/text_color"
+            android:textSize="@dimen/font_26"
+            android:id="@+id/title"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:paddingLeft="@dimen/dp_10"
+            android:paddingRight="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:textColor="@color/text_color_no"
+            android:textSize="@dimen/font_24"
+            android:id="@+id/time"
+            android:layout_height="wrap_content"/>
+        <View
+            android:id="@+id/line"
+            android:layout_margin="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:background="@color/line_color"
+            android:layout_height="@dimen/dp_0.5"/>
+        <WebView
+            android:id="@+id/webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
+    </com.xuexiang.xui.widget.statelayout.StatefulLayout>
+
+</LinearLayout>

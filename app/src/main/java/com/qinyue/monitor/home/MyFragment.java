@@ -91,7 +91,11 @@ public class MyFragment extends Fragment {
     }
 
     private void refresh(){
-        loginText.setText(UserUtils.getRealName() + "\n" + UserUtils.getUserName().replaceAll(TagConstant.POHNETOX, TagConstant.POHNETOY));
+        if (UserUtils.isLogin()) {
+            loginText.setText(UserUtils.getRealName() + "\n" + UserUtils.getUserName().replaceAll(TagConstant.POHNETOX, TagConstant.POHNETOY));
+        }else {
+            loginText.setText("点击注册/登录");
+        }
     }
 
     @OnClick({R.id.view_login, R.id.view_my, R.id.view_msg, R.id.view_xf, R.id.view_yy, R.id.view_qzyjx, R.id.view_jczxx, R.id.view_logout})

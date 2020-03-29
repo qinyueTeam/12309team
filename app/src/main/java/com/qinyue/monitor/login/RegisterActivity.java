@@ -240,6 +240,7 @@ public class RegisterActivity extends BaseActivity {
 
         PictureSelector.create(this)
                 .themeStyle(R.style.picture_default_style)
+                .loadImageEngine(GlideEngine.createGlideEngine())
                 .openExternalPreview(position, media);
     }
 
@@ -365,7 +366,9 @@ public class RegisterActivity extends BaseActivity {
         map.put("realName", nameEdit.getEditValue());
         map.put("gender", (checkIndex + 1) + "");
         map.put("mobile", phoneEdit.getEditValue());
-        map.put("idCard", cardEdit.getEditValue());
+        map.put("zjhm2", cardEdit.getEditValue());
+        map.put("zjlxmc2", "身份证");
+        map.put("zjlxbm2", "9910180300001");
         map.put("password", pwdEdit.getEditValue());
         map.put("confirmPassword", pwdAgEdit.getEditValue());
         map.put("email", emailEdit.getEditValue());
