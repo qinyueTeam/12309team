@@ -75,4 +75,12 @@ public class UserUtils {
             return "";
         }
     }
+    public static String getKeyId(){
+        MyUserBean object = SPUtils.getObject(SPUtils.getDefaultSharedPreferences(), TagConstant.USERTAG, MyUserBean.class);
+        if (object!=null&&object.getBaseUser()!=null){
+            return object.getBaseUser().getKeyid();
+        }else {
+            return "";
+        }
+    }
 }

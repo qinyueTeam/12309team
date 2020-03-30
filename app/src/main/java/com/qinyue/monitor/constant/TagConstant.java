@@ -18,4 +18,5 @@ public class TagConstant {
     public static final String POHNETOY = "$1****$2";
     public static final String IDCARDTOX = "(\\d{4})\\d{10}(\\w{4})";
     public static final String IDCARDTOY = "$1**********$2";
+    public static final String SOURCE = "小程序";
 }

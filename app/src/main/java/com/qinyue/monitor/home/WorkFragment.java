@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide;
 import com.qinyue.monitor.R;
 import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.login.RegisterActivity;
+import com.qinyue.monitor.util.UserUtils;
 import com.qinyue.monitor.work.AccusationActivity;
 import com.qinyue.monitor.work.AdministrativeLitigationActivity;
 import com.qinyue.monitor.work.CivilActionActivity;
@@ -19,6 +20,7 @@ import com.qinyue.monitor.work.CriminalComPlaintActivity;
 import com.qinyue.monitor.work.OtherActivity;
 import com.qinyue.monitor.work.StateCompensationActivity;
 import com.qinyue.monitor.work.UnderageActivity;
+import com.qinyue.monitor.work.XzActivity;
 import com.xuexiang.xui.widget.toast.XToast;
 
 import androidx.annotation.NonNull;
@@ -81,37 +83,86 @@ public class WorkFragment extends Fragment{
         initOnCliclek();
         return view;
     }
-@OnClick({R.id.ll_kg,R.id.ll_xsss,R.id.ll_gjpc,R.id.ll_msss,R.id.xzss,R.id.img_wcn,R.id.ll_qt})
+@OnClick({R.id.img_gyss,R.id.img_flzx,R.id.img_qzyj,R.id.ll_kg,R.id.ll_xsss,R.id.ll_gjpc,R.id.ll_msss,R.id.xzss,R.id.img_wcn,R.id.ll_qt,R.id.ll_yysp,R.id.ll_yyck,R.id.yyls})
 public void onClick(View view){
     this.view = view;
     switch (view.getId()){
         case R.id.ll_kg:{
-            Intent intent = new Intent(getActivity(), AccusationActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 0);
+                startActivity(intent);
+            }
         }break;
         case R.id.ll_xsss:{
-            Intent intent = new Intent(getActivity(), CriminalComPlaintActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 1);
+                startActivity(intent);
+            }
         }break;
         case R.id.ll_gjpc:{
-            Intent intent = new Intent(getActivity(), StateCompensationActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 2);
+                startActivity(intent);
+            }
         }break;
         case R.id.ll_msss:{
-            Intent intent = new Intent(getActivity(), CivilActionActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 3);
+                startActivity(intent);
+            }
         }break;
         case R.id.xzss:{
-            Intent intent = new Intent(getActivity(), AdministrativeLitigationActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 4);
+                startActivity(intent);
+            }
         }break;
         case R.id.ll_qt:{
-            Intent intent = new Intent(getActivity(), OtherActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 5);
+                startActivity(intent);
+            }
         }break;
         case R.id.img_wcn:{
-            Intent intent = new Intent(getActivity(), UnderageActivity.class);//要替换须知界面
-            startActivity(intent);
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 6);
+                startActivity(intent);
+            }
+        }break;
+        case R.id.img_gyss:{//预约视频
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 7);
+                startActivity(intent);
+            }
+        }break;
+        case R.id.ll_yysp:{//预约视频
+            if (UserUtils.isLogin()) {
+            }
+        }break;
+        case R.id.ll_yyck:{//预约窗口
+            if (UserUtils.isLogin()) {
+
+            }
+        }break;
+        case R.id.yyls:{//预约律师
+            if (UserUtils.isLogin()) {}
+        }break;
+        case R.id.img_qzyj:{//群众意见箱
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), XzActivity.class);//
+                intent.putExtra("type", 8);
+                startActivity(intent);
+            }
+        }break;
+        case R.id.img_flzx:{//法律咨询
         }break;
     }
 }

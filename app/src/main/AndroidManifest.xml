@@ -65,6 +65,9 @@
         <activity android:name=".first.DyzjActivity" />
         <activity android:name=".first.AddJczxxActivity" />
         <activity android:name=".my.JczxxDetailsActivity" />
+        <activity android:name=".work.XzActivity" />
+        <activity android:name=".work.AddQzyjxActivity" />
+        <activity android:name=".my.QzyjDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -22,7 +22,7 @@ public class NetConstant {
     public static final String suggestionList = "/rici/suggestionList";
     //预约接访列表
     public static final String appointmentList = "/rici/appointmentList";
-    //新闻/法律法规列表
+    //新闻/法律法规列表,须知
     public static final String newsList = "/announceShow/show";
     //重要案件信息列表
     public static final String caseList = "/rici/caseList";
@@ -40,4 +40,10 @@ public class NetConstant {
     public static final String saveLetter = "/announceShow/saveLetter";
     //检察长信箱附件上传
     public static final String savePicture = "/announceShow/savePicture";
+    //获取类型代码表
+    public static final String getTypeCode = "/rici/code";
+    //群众意见建议提交
+    public static final String suggestion = "/rici/suggestion";
+    //群众意见建议详情
+    public static final String suggestionDetail = "/rici/suggestionDetail";
 }
