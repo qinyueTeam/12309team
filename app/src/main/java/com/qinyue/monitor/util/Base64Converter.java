@@ -1,9 +1,15 @@
 package com.qinyue.monitor.util;
 
 import android.os.Build;
+import android.util.Base64;
 
 import com.xuexiang.xutil.security.EncodeUtils;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -115,5 +121,25 @@ public class Base64Converter {
             e.printStackTrace();
         }
         return null;
+    }
+    /**
+     * 将文件转成base64 字符串
+     *
+     * @param path 文件路径
+     * @return *
+     * @throws Exception
+     */
+    public static String encodeBase64File(String path){
+        File file = new File(path);
+        try {
+            FileInputStream inputFile = new FileInputStream(file);
+            byte[] buffer = new byte[(int) file.length()];
+            inputFile.read(buffer);
+            inputFile.close();
+            return Base64.encodeToString(buffer,Base64.NO_WRAP);
+        }catch (Exception e){
+            return "";
+        }
+
     }
 }

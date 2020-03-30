@@ -1,6 +1,7 @@
 package com.qinyue.monitor.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,12 +16,23 @@ import com.qinyue.monitor.base.BaseListBean;
 import com.qinyue.monitor.base.BaseResBean;
 import com.qinyue.monitor.constant.NetConstant;
 import com.qinyue.monitor.constant.TagConstant;
+import com.qinyue.monitor.first.AddJczxxActivity;
+import com.qinyue.monitor.first.DyzjActivity;
+import com.qinyue.monitor.first.FirstPagerAdapter;
+import com.qinyue.monitor.first.JcfcActivity;
+import com.qinyue.monitor.first.JcxwdtListBean;
+import com.qinyue.monitor.first.JwxzActivity;
+import com.qinyue.monitor.first.ZyajBean;
+import com.qinyue.monitor.my.QzyjActivity;
 import com.qinyue.monitor.util.Base64Converter;
 import com.qinyue.monitor.util.JsonUtils;
+import com.qinyue.monitor.util.UserUtils;
 import com.qinyue.monitor.view.ScaleTransitionPagerTitleView;
+import com.qinyue.monitor.view.WebViewActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
+import com.xuexiang.xui.widget.toast.XToast;
 
 import net.lucode.hackware.magicindicator.MagicIndicator;
 import net.lucode.hackware.magicindicator.ViewPagerHelper;
@@ -257,10 +269,10 @@ public class FirstFragment extends Fragment {
     public void onClick(View view){
         switch (view.getId()){
             case R.id.lin_jcyjj:{//检察院简介
-
+                getJcyjj();
             }break;
             case R.id.lin_jwxz:{//检务须知
-
+                startActivity(new Intent(mainActivity, JwxzActivity.class));
             }break;
             case R.id.lin_jwjd:{//检务监督
 
@@ -269,13 +281,17 @@ public class FirstFragment extends Fragment {
 
             }break;
             case R.id.lin_jczxx:{//检察长信箱
-
+                if (UserUtils.isLogin()) {
+                    startActivity(new Intent(mainActivity, AddJczxxActivity.class));
+                } else {
+                    XToast.error(mainActivity, "请登录").show();
+                }
             }break;
             case R.id.lin_jcfc:{//检察风采
-
+                startActivity(new Intent(mainActivity, JcfcActivity.class));
             }break;
             case R.id.lin_dyzj:{//党员之家
-
+                startActivity(new Intent(mainActivity, DyzjActivity.class));
             }break;
             case R.id.lin_flzx:{//法律咨询
 
@@ -437,6 +453,34 @@ public class FirstFragment extends Fragment {
                 }, throwable -> {
                     refreshLayout.finishRefresh(false);
                     refreshLayout.finishLoadMore(false);
+                });
+    }
+    private void getJcyjj(){
+        mainActivity.miniLoadingDialog.show();
+        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL2 + NetConstant.newsList)
+                .add("orgId", "1")
+                .add("page", "1")
+                .add("type", "jcyjj")
+                .asParser(new SimpleParser<BaseArrayDataBean<JcxwdtListBean>>(){})
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    mainActivity.miniLoadingDialog.dismiss();
+                    if (s.isResult()) {
+                        if (s.getData()!=null&&s.getData().size()>0) {
+                            Intent intent = new Intent(mainActivity, WebViewActivity.class);
+                            intent.putExtra("content", s.getData().get(0).getContent());
+                            intent.putExtra("title", s.getData().get(0).getTitle());
+                            intent.putExtra("time", s.getData().get(0).getReleaseTime());
+                            startActivity(intent);
+                        }else {
+                            XToast.error(mainActivity,"无数据").show();
+                        }
+                    }else {
+                        XToast.error(mainActivity,s.getMsg()).show();
+                    }
+                }, throwable -> {
+                    mainActivity.miniLoadingDialog.dismiss();
+                    XToast.error(mainActivity,throwable.getMessage()).show();
                 });
     }
 }

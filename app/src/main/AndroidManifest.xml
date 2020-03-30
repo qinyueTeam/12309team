@@ -59,6 +59,12 @@
         <activity android:name=".my.SpyyActivity" />
         <activity android:name=".view.WebViewActivity" />
         <activity android:name=".view.WebViewActivity2" />
+        <activity android:name=".first.JwxzActivity" />
+        <activity android:name=".first.JcfcActivity" />
+        <activity android:name=".view.WebViewNoBaseUrlActivity" />
+        <activity android:name=".first.DyzjActivity" />
+        <activity android:name=".first.AddJczxxActivity" />
+        <activity android:name=".my.JczxxDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -19,4 +19,7 @@
     <color name="but_bkg_start">#197DAA</color>
     <color name="but_bkg_end">#44C8FA</color>
     <color name="transparent">#00000000</color>
+    <color name="color_f4">#f4f4f4</color>
+    <color name="color_b6">#60abb7</color>
+    <color name="color_4c">#3D646B</color>
 </resources>

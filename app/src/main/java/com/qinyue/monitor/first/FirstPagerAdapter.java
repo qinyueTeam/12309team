@@ -1,4 +1,4 @@
-package com.qinyue.monitor.home;
+package com.qinyue.monitor.first;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -6,28 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.blankj.utilcode.util.ConvertUtils;
-import com.blankj.utilcode.util.TimeUtils;
 import com.bumptech.glide.Glide;
-import com.google.gson.Gson;
 import com.qinyue.monitor.R;
-import com.qinyue.monitor.base.BaseListBean;
-import com.qinyue.monitor.base.BaseResBean;
-import com.qinyue.monitor.constant.NetConstant;
-import com.qinyue.monitor.constant.TagConstant;
-import com.qinyue.monitor.my.MyXFActivity;
-import com.qinyue.monitor.my.XfListBean;
-import com.qinyue.monitor.util.Base64Converter;
-import com.qinyue.monitor.util.GlideCircleTransform;
-import com.qinyue.monitor.util.JsonUtils;
-import com.qinyue.monitor.util.UserUtils;
+import com.qinyue.monitor.home.MainActivity;
 import com.qinyue.monitor.view.MyView;
 import com.qinyue.monitor.view.WebViewActivity;
 import com.qinyue.monitor.view.WebViewActivity2;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.zhy.adapter.recyclerview.CommonAdapter;
 import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
@@ -38,15 +22,11 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import rxhttp.wrapper.param.RxHttp;
 
 /**
  * 创建人:qinyue

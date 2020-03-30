@@ -136,7 +136,6 @@ public class RegisterActivity extends BaseActivity {
         switch (view.getId()) {
             case R.id.choose_sex: {//选择性别
                 showSimpleBottomSheetList();
-                miniLoadingDialog.dismiss();
             }
             break;
             case R.id.lszfj_yl: {//预览律师证附件
