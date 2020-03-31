@@ -17,9 +17,12 @@ import com.qinyue.monitor.work.AccusationActivity;
 import com.qinyue.monitor.work.AdministrativeLitigationActivity;
 import com.qinyue.monitor.work.CivilActionActivity;
 import com.qinyue.monitor.work.CriminalComPlaintActivity;
+import com.qinyue.monitor.work.LawyerInterViewActivity;
 import com.qinyue.monitor.work.OtherActivity;
+import com.qinyue.monitor.work.ScheduleVideoActivity;
 import com.qinyue.monitor.work.StateCompensationActivity;
 import com.qinyue.monitor.work.UnderageActivity;
+import com.qinyue.monitor.work.WindowInterViewActivity;
 import com.qinyue.monitor.work.XzActivity;
 import com.xuexiang.xui.widget.toast.XToast;
 
@@ -130,11 +133,11 @@ public void onClick(View view){
             }
         }break;
         case R.id.img_wcn:{
-            if (UserUtils.isLogin()) {
+//            if (UserUtils.isLogin()) {
                 Intent intent = new Intent(getActivity(), XzActivity.class);//
                 intent.putExtra("type", 6);
                 startActivity(intent);
-            }
+//            }
         }break;
         case R.id.img_gyss:{//预约视频
             if (UserUtils.isLogin()) {
@@ -145,15 +148,21 @@ public void onClick(View view){
         }break;
         case R.id.ll_yysp:{//预约视频
             if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), ScheduleVideoActivity.class);//
+                startActivity(intent);
             }
         }break;
         case R.id.ll_yyck:{//预约窗口
             if (UserUtils.isLogin()) {
-
+                Intent intent = new Intent(getActivity(), WindowInterViewActivity.class);//
+                startActivity(intent);
             }
         }break;
         case R.id.yyls:{//预约律师
-            if (UserUtils.isLogin()) {}
+            if (UserUtils.isLogin()) {
+                Intent intent = new Intent(getActivity(), LawyerInterViewActivity.class);//
+                startActivity(intent);
+            }
         }break;
         case R.id.img_qzyj:{//群众意见箱
             if (UserUtils.isLogin()) {

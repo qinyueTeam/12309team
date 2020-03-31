@@ -68,6 +68,10 @@
         <activity android:name=".work.XzActivity" />
         <activity android:name=".work.AddQzyjxActivity" />
         <activity android:name=".my.QzyjDetailsActivity" />
+        <activity android:name=".work.PublicLitigationActivity" />
+        <activity android:name=".work.LawyerInterViewActivity" />
+        <activity android:name=".work.WindowInterViewActivity" />
+        <activity android:name=".work.ScheduleVideoActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
