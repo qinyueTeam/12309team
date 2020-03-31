@@ -68,6 +68,9 @@
         <activity android:name=".work.XzActivity" />
         <activity android:name=".work.AddQzyjxActivity" />
         <activity android:name=".my.QzyjDetailsActivity" />
+        <activity android:name=".first.JwjdActivty" />
+        <activity android:name=".view.ChooseAfdActivity" />
+        <activity android:name=".view.ChooseSfActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

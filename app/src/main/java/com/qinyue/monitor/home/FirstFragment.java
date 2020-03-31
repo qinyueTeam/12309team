@@ -21,12 +21,14 @@ import com.qinyue.monitor.first.DyzjActivity;
 import com.qinyue.monitor.first.FirstPagerAdapter;
 import com.qinyue.monitor.first.JcfcActivity;
 import com.qinyue.monitor.first.JcxwdtListBean;
+import com.qinyue.monitor.first.JwjdActivty;
 import com.qinyue.monitor.first.JwxzActivity;
 import com.qinyue.monitor.first.ZyajBean;
 import com.qinyue.monitor.my.QzyjActivity;
 import com.qinyue.monitor.util.Base64Converter;
 import com.qinyue.monitor.util.JsonUtils;
 import com.qinyue.monitor.util.UserUtils;
+import com.qinyue.monitor.view.ChooseAfdActivity;
 import com.qinyue.monitor.view.ScaleTransitionPagerTitleView;
 import com.qinyue.monitor.view.WebViewActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -275,10 +277,10 @@ public class FirstFragment extends Fragment {
                 startActivity(new Intent(mainActivity, JwxzActivity.class));
             }break;
             case R.id.lin_jwjd:{//检务监督
-
+                startActivity(new Intent(mainActivity, JwjdActivty.class));
             }break;
             case R.id.lin_shce:{//扫黑除恶
-
+                startActivity(new Intent(mainActivity, ChooseAfdActivity.class));
             }break;
             case R.id.lin_jczxx:{//检察长信箱
                 if (UserUtils.isLogin()) {

@@ -16,10 +16,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
@@ -54,14 +50,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -95,13 +85,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -135,14 +120,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
-            <LinearLayout
-                android:id="@+id/choose_type"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:id="@+id/choose_type"
+                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -176,13 +156,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -215,13 +190,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
                 <LinearLayout
+                    android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginLeft="@dimen/dp_10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -254,7 +224,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_0.5"
                     android:background="@color/line_color"/>
-            </LinearLayout>
 
             <com.xuexiang.xui.widget.edittext.MultiLineEditText
                 android:layout_width="match_parent"

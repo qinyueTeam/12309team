@@ -19,7 +19,7 @@
         <item name="xui_config_color_splash_bg">@color/splash_bkg</item>
         <item name="xui_config_app_logo_bottom">@dimen/dp_270</item>
 <!--        <item name="xui_config_company_logo_bottom">@dimen/dp_10</item>-->
-        <item name="android:windowBackground">@drawable/xui_config_bg_splash</item>
+        <item name="android:windowBackground">@drawable/my_bg_splash</item>
         <item name="android:windowFullscreen">true</item>
     </style>
 

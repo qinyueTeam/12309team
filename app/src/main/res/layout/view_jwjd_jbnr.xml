@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:layout_marginBottom="@dimen/dp_30"
+    android:layout_marginTop="@dimen/dp_10"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_5"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:paddingLeft="@dimen/dp_10"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <View
+                android:layout_width="@dimen/dp_5"
+                android:layout_height="@dimen/dp_25"
+                android:background="@color/color_b6" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:text="举报内容"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/font_30" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_0.5"
+            android:layout_marginTop="@dimen/dp_5"
+            android:layout_marginBottom="@dimen/dp_5"
+            android:background="@color/line_color" />
+        <com.xuexiang.xui.widget.edittext.MultiLineEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:mlet_maxCount="1000"
+            android:id="@+id/content"
+            app:mlet_hintText="内容字数不超过1000字"
+            />
+        <LinearLayout
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="@dimen/dp_1"/>
+            <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/but_yes"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/shape_but_bkg"
+                android:text="提交"
+                app:sb_radius="90dp"
+                android:paddingTop="@dimen/dp_7"
+                android:paddingBottom="@dimen/dp_7"
+                android:shadowRadius="90"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_26"
+                app:sb_ripple_color="#ffffff"
+                app:sb_ripple_duration="300"
+                app:sb_shape_type="rectangle" />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="@dimen/dp_1"/>
+            <com.xuexiang.xui.widget.button.shadowbutton.ShadowButton
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/but_no"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:background="@drawable/shape_but_bkg"
+                android:text="取消"
+                android:layout_marginLeft="@dimen/dp_30"
+                app:sb_radius="90dp"
+                android:paddingTop="@dimen/dp_7"
+                android:paddingBottom="@dimen/dp_7"
+                android:shadowRadius="90"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_26"
+                app:sb_ripple_color="#ffffff"
+                app:sb_ripple_duration="300"
+                app:sb_shape_type="rectangle" />
+            <View
+                android:layout_width="0dp"
+                android:layout_weight="0.7"
+                android:layout_height="@dimen/dp_1"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
