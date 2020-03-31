@@ -38,7 +38,8 @@ public class UnderageActivity extends BaseActivity {
                 startActivity(intent);
             }break;
             case R.id.img_sqjz: {
-
+                Intent intent = new Intent(this,ApplyHelpActivity.class);
+                startActivity(intent);
             }break;
         }
     }
