@@ -70,5 +70,8 @@ dependencies {
     implementation 'com.zhy:base-rvadapter:3.0.3'
     implementation 'com.zhy:base-adapter:3.0.3'
     implementation 'com.google.android.material:material:1.2.0-alpha05'
-
+    //WebView
+    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-core:1.0.0'
+    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.0'//选填
+    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-filechooser:1.0.0'//选填
 }

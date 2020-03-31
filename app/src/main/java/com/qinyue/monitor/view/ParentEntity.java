@@ -7,53 +7,19 @@ import java.io.Serializable;
  * 创建日期:2020/3/31
  * 描述:
  **/
-public class SelectSectionParentEntity implements Serializable {
+public class ParentEntity implements Serializable {
     public static final int PARENT_ITEM = 0;//父布局
     public static final int CHILD_ITEM = 1;//子布局
 
     private int type;//显示类型
     private boolean isExpand;// 是否展开
     private String code;
-    private String parentCode;
-    private String parentCodeForFirst;
     private String name;
-    private String parentName;
-    private String firstName;
+    private String firstCode;
+    private String secCode;
+    private String thCode;
     private boolean hasChild;
     private int lv;
-
-    public int getLv() {
-        return lv;
-    }
-
-    public void setLv(int lv) {
-        this.lv = lv;
-    }
-
-    public String getParentName() {
-        return parentName;
-    }
-
-    public void setParentName(String parentName) {
-        this.parentName = parentName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getParentCodeForFirst() {
-        return parentCodeForFirst;
-    }
-
-    public void setParentCodeForFirst(String parentCodeForFirst) {
-        this.parentCodeForFirst = parentCodeForFirst;
-    }
-
 
     public int getType() {
         return type;
@@ -71,21 +37,12 @@ public class SelectSectionParentEntity implements Serializable {
         isExpand = expand;
     }
 
-
     public String getCode() {
         return code;
     }
 
     public void setCode(String code) {
         this.code = code;
-    }
-
-    public String getParentCode() {
-        return parentCode;
-    }
-
-    public void setParentCode(String parentCode) {
-        this.parentCode = parentCode;
     }
 
     public String getName() {
@@ -96,11 +53,43 @@ public class SelectSectionParentEntity implements Serializable {
         this.name = name;
     }
 
+    public String getFirstCode() {
+        return firstCode;
+    }
+
+    public void setFirstCode(String firstCode) {
+        this.firstCode = firstCode;
+    }
+
+    public String getSecCode() {
+        return secCode;
+    }
+
+    public void setSecCode(String secCode) {
+        this.secCode = secCode;
+    }
+
+    public String getThCode() {
+        return thCode;
+    }
+
+    public void setThCode(String thCode) {
+        this.thCode = thCode;
+    }
+
     public boolean isHasChild() {
         return hasChild;
     }
 
     public void setHasChild(boolean hasChild) {
         this.hasChild = hasChild;
+    }
+
+    public int getLv() {
+        return lv;
+    }
+
+    public void setLv(int lv) {
+        this.lv = lv;
     }
 }

@@ -31,6 +31,9 @@ import com.qinyue.monitor.util.UserUtils;
 import com.qinyue.monitor.view.ChooseAfdActivity;
 import com.qinyue.monitor.view.ScaleTransitionPagerTitleView;
 import com.qinyue.monitor.view.WebViewActivity;
+import com.qinyue.monitor.view.X5WebViewActivity;
+import com.qinyue.monitor.web.AgentWebActivity;
+import com.qinyue.monitor.web.AgentWebFragment;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -280,7 +283,7 @@ public class FirstFragment extends Fragment {
                 startActivity(new Intent(mainActivity, JwjdActivty.class));
             }break;
             case R.id.lin_shce:{//扫黑除恶
-                startActivity(new Intent(mainActivity, ChooseAfdActivity.class));
+                startActivity(new Intent(mainActivity, JwjdActivty.class));
             }break;
             case R.id.lin_jczxx:{//检察长信箱
                 if (UserUtils.isLogin()) {
@@ -296,7 +299,8 @@ public class FirstFragment extends Fragment {
                 startActivity(new Intent(mainActivity, DyzjActivity.class));
             }break;
             case R.id.lin_flzx:{//法律咨询
-
+                Intent intent = new Intent(mainActivity, X5WebViewActivity.class);
+                startActivity(intent);
             }break;
         }
     }

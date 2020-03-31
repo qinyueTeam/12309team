@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">monitor</string>
+    <string name="app_name">智能检务</string>
     <string name="my_edit">注:平台用户为实名制用户，修改用户信息您只可修改手机号、邮箱、家庭住址等信息。姓名、性别、身份证号码不可进行修改。若您需修改身份证信息。请使用电脑浏览https://www.12309.gov.vn进行修改。</string>
     <string name="regex_phone_number">^((13[0-9])|(14[5,7])|(15[0-3,5-9])|(16[6])|(17[0,1,3,5-8])|(18[0-9])|(19[8,9]))\\d{8}$</string>
     <string name="str_zzmm">[{"id": "001","text": "群众"},{"id": "01","text": "中国共产党党员"},{"id": "02","text": "中国共产党预备党员"},{"id": "03","text": "中国共青团团员"},{"id": "04","text": "中国国民党革命委员会会员"},{"id": "05","text": "中国民主同盟盟员"},{"id": "06","text": "中国民主建国会会员"},{"id": "07","text": "中国民主促进会会员"},{"id": "08","text": "中国农工民主党党员"},{"id": "09","text": "中国致公党党员"},{"id": "10","text": "九三学社社员"},{"id": "11","text": "台湾民主自治同盟盟员"},{"id": "12","text": "无党派民主人士"}]</string>
@@ -407,4 +407,730 @@
     ]
   }
 ]</string>
+    <string name="str_tssf">[
+  {
+    "id": "1000",
+    "text": "人大代表",
+    "children": [
+      {
+        "id": "1001",
+        "text": "全国人大代表",
+        "children":[]
+      },
+      {
+        "id": "1002",
+        "text": "省级人大代表",
+        "children":[]
+      },
+      {
+        "id": "1003",
+        "text": "市级人大代表",
+        "children":[]
+      },
+      {
+        "id": "1004",
+        "text": "县级人大代表",
+        "children":[]
+      }
+    ]
+  },
+  {
+    "id": "2000",
+    "text": "政协委员",
+    "children": [
+      {
+        "id": "2001",
+        "text": "全国政协委员",
+        "children":[]
+      },
+      {
+        "id": "2002",
+        "text": "省级政协委员",
+        "children":[]
+      },
+      {
+        "id": "2003",
+        "text": "市级政协委员",
+        "children":[]
+      },
+      {
+        "id": "2004",
+        "text": "县级政协委员",
+        "children":[]
+      }
+    ]
+  }
+]</string>
+    <string name="str_sxly">[{"id": "01","text": "工程建设"},{"id": "02","text": "土地出让"},{"id": "03","text": "产权交易"},{"id": "04","text": "医药购销"},{"id": "05","text": "政府采购"},{"id": "06","text": "资源开发、经销"},{"id": "07","text": "出版发行"},{"id": "08","text": "银行信贷"},{"id": "09","text": "证券期货"},{"id": "10","text": "商业保险"},{"id": "11","text": "电信、电力"},{"id": "12","text": "其他"}]</string>
+    <string name="str_sxxz">[
+  {
+    "id": "a000000",
+    "text": "职务犯罪",
+    "state": "closed",
+    "children": [
+      {
+        "id": "a010000",
+        "text": "贪污贿赂犯罪",
+        "state": "closed",
+        "children": [
+          {
+            "id": "a010100",
+            "text": "贪污类犯罪",
+            "state": "closed",
+            "children": [
+              {
+                "id": "a010101",
+                "text": "贪污罪"
+              },
+              {
+                "id": "a010102",
+                "text": "挪用公款罪"
+              },
+              {
+                "id": "a010103",
+                "text": "巨额财产来源不明罪"
+              },
+              {
+                "id": "a010104",
+                "text": "隐瞒境外存款罪"
+              },
+              {
+                "id": "a010105",
+                "text": "私分国有资产罪"
+              },
+              {
+                "id": "a010106",
+                "text": "私分罚没财物罪"
+              }
+            ]
+          },
+          {
+            "id": "a010200",
+            "text": "贿赂类犯罪",
+            "state": "closed",
+            "children": [
+              {
+                "id": "a010201",
+                "text": "受贿罪"
+              },
+              {
+                "id": "a010202",
+                "text": "单位受贿罪"
+              },
+              {
+                "id": "a010203",
+                "text": "利用影响力受贿罪"
+              },
+              {
+                "id": "a010204",
+                "text": "行贿罪"
+              },
+              {
+                "id": "a010205",
+                "text": "对单位行贿罪"
+              },
+              {
+                "id": "a010206",
+                "text": "介绍贿赂罪"
+              },
+              {
+                "id": "a010207",
+                "text": "单位行贿罪"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a020000",
+        "text": "国家工作人员渎职犯罪",
+        "state": "closed",
+        "children": [
+          {
+            "id": "a020100",
+            "text": "滥用职权罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020200",
+            "text": "玩忽职守罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020300",
+            "text": "徇私枉法罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020400",
+            "text": "执行判决、裁定滥用职权罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020500",
+            "text": "滥用管理公司、证券职权罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020600",
+            "text": "违法发放林木采伐许可证罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020700",
+            "text": "非法批准征收、征用、占用土地罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020800",
+            "text": "非法低价出让国有土地使用权罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a020900",
+            "text": "办理偷越国（边）境人员出入境证件罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021000",
+            "text": "放行偷越国（边）境人员罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021100",
+            "text": "阻碍解救被拐卖、绑架妇女、儿童罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021200",
+            "text": "执行判决、裁定失职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021300",
+            "text": "失职致使在押人员脱逃罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021400",
+            "text": "国家机关工作人员签订、履行合同失职被骗罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021500",
+            "text": "环境监管失职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021600",
+            "text": "食品监管渎职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021700",
+            "text": "传染病防治失职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021800",
+            "text": "商检失职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a021900",
+            "text": "动植物检疫失职罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022000",
+            "text": "不解救被拐卖、绑架妇女、儿童罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022100",
+            "text": "失职造成珍贵文物损毁、流失罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022200",
+            "text": "民事、行政枉法裁判罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022300",
+            "text": "枉法仲裁罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022400",
+            "text": "私放在押人员罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022500",
+            "text": "徇私舞弊减刑、假释、暂予监外执行罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022600",
+            "text": "徇私舞弊不移交刑事案件罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022700",
+            "text": "徇私舞弊不征、少征税款罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022800",
+            "text": "徇私舞弊发售发票、抵扣税款、出口退税罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a022900",
+            "text": "违法提供出口退税凭证罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023000",
+            "text": "放纵走私罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023100",
+            "text": "商检徇私舞弊罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023200",
+            "text": "动植物检疫徇私舞弊罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023300",
+            "text": "放纵制售伪劣商品犯罪行为罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023400",
+            "text": "帮助犯罪分子逃避处罚罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023500",
+            "text": "招收公务员、学生徇私舞弊罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023600",
+            "text": "故意泄露国家秘密罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a023700",
+            "text": "过失泄露国家秘密罪",
+            "state": "open",
+            "children": [
+
+            ]
+          }
+        ]
+      },
+      {
+        "id": "a030000",
+        "text": "国家机关工作人员侵犯公民人身权利和民主权利犯罪",
+        "state": "closed",
+        "children": [
+          {
+            "id": "a030100",
+            "text": "非法拘禁罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030200",
+            "text": "非法搜查罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030300",
+            "text": "刑讯逼供罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030400",
+            "text": "暴力取证罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030500",
+            "text": "虐待被监管人罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030600",
+            "text": "报复陷害罪",
+            "state": "open",
+            "children": [
+
+            ]
+          },
+          {
+            "id": "a030700",
+            "text": "破坏选举罪",
+            "state": "open",
+            "children": [
+
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "b000000",
+    "text": "普通刑事犯罪",
+    "state": "closed",
+    "children": [
+      {
+        "id": "b010000",
+        "text": "危害国家安全罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b020000",
+        "text": "危害公共安全罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b030000",
+        "text": "破坏社会主义市场经济秩序罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b040000",
+        "text": "侵犯公民人身权利、民主权利罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b050000",
+        "text": "侵犯财产罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b060000",
+        "text": "妨害社会管理秩序罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b070000",
+        "text": "危害国防利益罪",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "b080000",
+        "text": "军人违反职责罪",
+        "state": "open",
+        "children": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": "c000000",
+    "text": "一般违法",
+    "state": "open",
+    "children": [
+
+    ]
+  },
+  {
+    "id": "d000000",
+    "text": "违纪",
+    "state": "closed",
+    "children": [
+      {
+        "id": "d010000",
+        "text": "违反政治纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "d020000",
+        "text": "违反组织纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "d030000",
+        "text": "违反廉洁纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "d040000",
+        "text": "违反群众纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "d050000",
+        "text": "违反工作纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "d060000",
+        "text": "违反生活纪律",
+        "state": "open",
+        "children": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": "e000000",
+    "text": "作风问题",
+    "state": "closed",
+    "children": [
+      {
+        "id": "e010000",
+        "text": "思想作风问题",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "e020000",
+        "text": "工作作风问题",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "e030000",
+        "text": "生活作风问题",
+        "state": "open",
+        "children": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": "f000000",
+    "text": "申诉",
+    "state": "closed",
+    "children": [
+      {
+        "id": "f010000",
+        "text": "刑事申诉",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "f020000",
+        "text": "民事申诉",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "f030000",
+        "text": "行政申诉",
+        "state": "open",
+        "children": [
+
+        ]
+      },
+      {
+        "id": "f040000",
+        "text": "其他申诉",
+        "state": "open",
+        "children": [
+
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fkk00000",
+    "text": "打击报复举报人",
+    "state": "open",
+    "children": [
+
+    ]
+  },
+  {
+    "id": "g000000",
+    "text": "其他",
+    "state": "open",
+    "children": [
+
+    ]
+  }
+]</string>
+    <string name="lab_open_third_app">是否允许页面打开第三方应用?</string>
+    <string name="lab_yes">是</string>
+    <string name="lab_no">否</string>
 </resources>

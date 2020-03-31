@@ -46,4 +46,6 @@ public class NetConstant {
     public static final String suggestion = "/rici/suggestion";
     //群众意见建议详情
     public static final String suggestionDetail = "/rici/suggestionDetail";
+    //举报
+    public static final String savejb = "/rici/savejb";
 }
