@@ -136,6 +136,12 @@ public class ScheduleVideoActivity extends BaseActivity {
     }
 
     @Override
+    protected void onClickTitleLeft() {
+        super.onClickTitleLeft();
+        finish();
+    }
+
+    @Override
     protected Boolean status() {
         return null;
     }
