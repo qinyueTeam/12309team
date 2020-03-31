@@ -110,7 +110,7 @@ public class SfBean implements Serializable {
             private String id;
             private String text;
             private String state;
-            private List<?> children;
+            private List<ChildrenBean> children;
 
             public String getId() {
                 return id;
@@ -136,11 +136,11 @@ public class SfBean implements Serializable {
                 this.state = state;
             }
 
-            public List<?> getChildren() {
+            public List<ChildrenBean> getChildren() {
                 return children;
             }
 
-            public void setChildren(List<?> children) {
+            public void setChildren(List<ChildrenBean> children) {
                 this.children = children;
             }
         }

@@ -9,11 +9,12 @@
     <TextView
         android:layout_width="wrap_content"
         android:textSize="@dimen/font_28"
+        android:singleLine="true"
+        android:ellipsize="end"
         android:id="@+id/tv"
         android:textColor="@color/text_color"
         android:layout_height="wrap_content"/>
     <RelativeLayout
-        android:layout_marginLeft="@dimen/dp_10"
         android:layout_width="@dimen/dp_30"
         android:layout_height="@dimen/dp_30">
         <ImageView

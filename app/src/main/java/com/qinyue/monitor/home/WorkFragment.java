@@ -13,6 +13,7 @@ import com.qinyue.monitor.R;
 import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.login.RegisterActivity;
 import com.qinyue.monitor.util.UserUtils;
+import com.qinyue.monitor.view.X5WebViewActivity;
 import com.qinyue.monitor.work.AccusationActivity;
 import com.qinyue.monitor.work.AdministrativeLitigationActivity;
 import com.qinyue.monitor.work.CivilActionActivity;
@@ -172,6 +173,8 @@ public void onClick(View view){
             }
         }break;
         case R.id.img_flzx:{//法律咨询
+            Intent intent = new Intent(mainActivity, X5WebViewActivity.class);
+            startActivity(intent);
         }break;
     }
 }
