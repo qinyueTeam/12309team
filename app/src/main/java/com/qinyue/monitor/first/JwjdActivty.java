@@ -75,6 +75,7 @@ public class JwjdActivty extends BaseActivity {
     SparseArray<ParentEntity> bjbrZysxDatas = new SparseArray<>();
     SparseArray<ParentEntity> bjbrQtsxDatas = new SparseArray<>();
     private String[] mSmStr = {"是", "否"};
+    private String[] mSexStr = {"未知", "男","女"};
     private int[] smSelectOption = {0, 0, 0};
     private int[] mzSelectOption = {-1, -1, -1};
     private int[] zzmmSelectOption = {-1, -1, -1};
@@ -598,28 +599,28 @@ public class JwjdActivty extends BaseActivity {
             switch (i) {
                 case 0: {
                     stringMap.put("usernme",et_name.getText().toString().trim());
-                    stringMap.put("signature",smSelectOption[i]+"");
+                    stringMap.put("signature",smSelectOption[i]==0?"是":"否");
                     stringMap.put("id_card",et_idcard.getText().toString().trim());
                     stringMap.put("mobile",et_phone.getText().toString().trim());
-                    stringMap.put("area",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getCode());
+                    stringMap.put("area",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getName());
                     stringMap.put("address",et_address.getText().toString().trim());
                 }
                 break;
                 case 1: {
                     stringMap.put("usernme1",et_name.getText().toString().trim());
-                    stringMap.put("signature1",smSelectOption[i]+"");
+                    stringMap.put("signature1",smSelectOption[i]==0?"是":"否");
                     stringMap.put("id_card1",et_idcard.getText().toString().trim());
                     stringMap.put("mobile1",et_phone.getText().toString().trim());
-                    stringMap.put("area1",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getCode());
+                    stringMap.put("area1",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getName());
                     stringMap.put("address1",et_address.getText().toString().trim());
                 }
                 break;
                 case 2: {
                     stringMap.put("usernme2",et_name.getText().toString().trim());
-                    stringMap.put("signature2",smSelectOption[i]+"");
+                    stringMap.put("signature2",smSelectOption[i]==0?"是":"否");
                     stringMap.put("id_card2",et_idcard.getText().toString().trim());
                     stringMap.put("mobile2",et_phone.getText().toString().trim());
-                    stringMap.put("area2",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getCode());
+                    stringMap.put("area2",jbrAfdDatas.get(i)==null?"":jbrAfdDatas.get(i).getName());
                     stringMap.put("address2",et_address.getText().toString().trim());
                 }
                 break;
@@ -636,7 +637,7 @@ public class JwjdActivty extends BaseActivity {
             switch (i) {
                 case 0: {
                     stringMap.put("busername",et_name.getText().toString().trim());
-                    stringMap.put("bsex",checkIndexSex[i]==-1?"":checkIndexSex[i]+"");
+                    stringMap.put("bsex",checkIndexSex[i]==-1?"":mSexStr[i]+"");
                     stringMap.put("bnational",mzSelectOption[i]==-1?"":mzBeans.get(mzSelectOption[i]).getCode());
                     stringMap.put("bzzmm",zzmmSelectOption[i]==-1?"":zzmmBeans.get(zzmmSelectOption[i]).getId());
                     stringMap.put("bunit",et_dw.getText().toString().trim());
@@ -654,37 +655,37 @@ public class JwjdActivty extends BaseActivity {
                 break;
                 case 1: {
                     stringMap.put("busername1",et_name.getText().toString().trim());
-                    stringMap.put("bsex1",checkIndexSex[i]==-1?"":checkIndexSex[i]+"");
-                    stringMap.put("bnational1",mzSelectOption[i]==-1?"":mzBeans.get(mzSelectOption[i]).getCode());
-                    stringMap.put("bzzmm1",zzmmSelectOption[i]==-1?"":zzmmBeans.get(zzmmSelectOption[i]).getId());
+                    stringMap.put("bsex1",checkIndexSex[i]==-1?"":mSexStr[i]+"");
+                    stringMap.put("bnational1",mzSelectOption[i]==-1?"":mzBeans.get(mzSelectOption[i]).getName());
+                    stringMap.put("bzzmm1",zzmmSelectOption[i]==-1?"":zzmmBeans.get(zzmmSelectOption[i]).getText());
                     stringMap.put("bunit1",et_dw.getText().toString().trim());
                     stringMap.put("baddress1",et_address.getText().toString().trim());
-                    stringMap.put("bafdq1",bjbrAfdDatas.get(i)==null?"":bjbrAfdDatas.get(i).getCode());
+                    stringMap.put("bafdq1",bjbrAfdDatas.get(i)==null?"":bjbrAfdDatas.get(i).getName());
                     stringMap.put("bzhiji1",et_zj.getText().toString().trim());
                     stringMap.put("bzhiwu1",et_zw.getText().toString().trim());
-                    stringMap.put("bshenfent1",sfDatas.get(i)==null?"":sfDatas.get(i).getCode());
-                    stringMap.put("btshenfen1",tssfDatas.get(i)==null?"":tssfDatas.get(i).getCode());
-                    stringMap.put("bsxly1",sxlySelectOption[i]==-1?"":sxlyBeans.get(sxlySelectOption[i]).getId());
-                    stringMap.put("bzysxxz1",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getCode());
-                    stringMap.put("bqtsxxz1",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getCode());
+                    stringMap.put("bshenfent1",sfDatas.get(i)==null?"":sfDatas.get(i).getName());
+                    stringMap.put("btshenfen1",tssfDatas.get(i)==null?"":tssfDatas.get(i).getName());
+                    stringMap.put("bsxly1",sxlySelectOption[i]==-1?"":sxlyBeans.get(sxlySelectOption[i]).getText());
+                    stringMap.put("bzysxxz1",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getName());
+                    stringMap.put("bqtsxxz1",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getName());
                     stringMap.put("sxje1",et_sxje.getText().toString().trim());
                 }
                 break;
                 case 2: {
                     stringMap.put("busername2",et_name.getText().toString().trim());
-                    stringMap.put("bsex2",checkIndexSex[i]==-1?"":checkIndexSex[i]+"");
-                    stringMap.put("bnational2",mzSelectOption[i]==-1?"":mzBeans.get(mzSelectOption[i]).getCode());
-                    stringMap.put("bzzmm2",zzmmSelectOption[i]==-1?"":zzmmBeans.get(zzmmSelectOption[i]).getId());
+                    stringMap.put("bsex2",checkIndexSex[i]==-1?"":mSexStr[i]+"");
+                    stringMap.put("bnational2",mzSelectOption[i]==-1?"":mzBeans.get(mzSelectOption[i]).getName());
+                    stringMap.put("bzzmm2",zzmmSelectOption[i]==-1?"":zzmmBeans.get(zzmmSelectOption[i]).getText());
                     stringMap.put("bunit2",et_dw.getText().toString().trim());
                     stringMap.put("baddress2",et_address.getText().toString().trim());
-                    stringMap.put("bafdq2",bjbrAfdDatas.get(i)==null?"":bjbrAfdDatas.get(i).getCode());
+                    stringMap.put("bafdq2",bjbrAfdDatas.get(i)==null?"":bjbrAfdDatas.get(i).getName());
                     stringMap.put("bzhiji2",et_zj.getText().toString().trim());
                     stringMap.put("bzhiwu2",et_zw.getText().toString().trim());
-                    stringMap.put("bshenfent2",sfDatas.get(i)==null?"":sfDatas.get(i).getCode());
-                    stringMap.put("btshenfen2",tssfDatas.get(i)==null?"":tssfDatas.get(i).getCode());
-                    stringMap.put("bsxly2",sxlySelectOption[i]==-1?"":sxlyBeans.get(sxlySelectOption[i]).getId());
-                    stringMap.put("bzysxxz2",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getCode());
-                    stringMap.put("bqtsxxz2",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getCode());
+                    stringMap.put("bshenfent2",sfDatas.get(i)==null?"":sfDatas.get(i).getName());
+                    stringMap.put("btshenfen2",tssfDatas.get(i)==null?"":tssfDatas.get(i).getName());
+                    stringMap.put("bsxly2",sxlySelectOption[i]==-1?"":sxlyBeans.get(sxlySelectOption[i]).getText());
+                    stringMap.put("bzysxxz2",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getName());
+                    stringMap.put("bqtsxxz2",bjbrZysxDatas.get(i)==null?"":bjbrZysxDatas.get(i).getName());
                     stringMap.put("sxje2",et_sxje.getText().toString().trim());
                 }
                 break;
@@ -716,6 +717,7 @@ public class JwjdActivty extends BaseActivity {
                     miniLoadingDialog.dismiss();
                     if (s.isResult()) {
                         XToast.success(JwjdActivty.this,s.getMsg()).show();
+                        finish();
                     }else {
                         XToast.error(JwjdActivty.this,s.getMsg()).show();
                     }

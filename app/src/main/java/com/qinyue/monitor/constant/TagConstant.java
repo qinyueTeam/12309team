@@ -21,4 +21,10 @@ public class TagConstant {
     public static final String SOURCE = "小程序";
     //法律咨询的url
     public static final String FLZXURL = "https://m.fagougou.com/wx/fromMkt?mkt=kejgh073869f";
+    //法律咨询的url
+    public static  String ACCESSTOKEN = "";
+    //法律咨询的url
+    public static  String IMAGE = "https://www.ricitech.com/microImg/camra_background.png";
+    //法律咨询的url
+    public static  String IMAGE1 = "https://www.ricitech.com/microImg/idcardimage.png";
 }

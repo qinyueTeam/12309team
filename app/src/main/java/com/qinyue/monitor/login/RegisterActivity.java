@@ -102,7 +102,23 @@ public class RegisterActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-
+        int where = getIntent().getIntExtra("where", 0);
+        if (where==1){
+            //身份证扫描注册
+            String address = getIntent().getStringExtra("address");
+            String idcard = getIntent().getStringExtra("idcard");
+            String name =getIntent().getStringExtra("name");
+            String sex = getIntent().getStringExtra("sex");
+            if (sex.equals("男")){
+                checkIndex = 0;
+            }else {
+                checkIndex = 1;
+            }
+            nameEdit.setText(name);
+            cardEdit.setText(idcard);
+            tvSex.setText(sex);
+            addressEdit.setText(address);
+        }
     }
 
     @Override
