@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@color/default_bkg"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_height="match_parent">
     <include
         android:id="@+id/titleview"
@@ -123,7 +124,7 @@
                         android:layout_centerVertical="true"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -133,7 +134,6 @@
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_zjlx"
@@ -225,7 +225,7 @@
                         android:visibility="invisible"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -235,7 +235,6 @@
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_xb"
@@ -280,7 +279,7 @@
                         android:visibility="invisible"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -288,7 +287,6 @@
                         android:background="@null"
                         android:focusable="true"
                         android:gravity="end"
-                        android:editable="false"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -331,13 +329,12 @@
                         android:visibility="invisible"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:hint="请选择国籍"
                         android:background="@null"
-                        android:editable="false"
                         android:focusable="true"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
@@ -626,7 +623,7 @@
                         android:visibility="invisible"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -636,7 +633,6 @@
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_dlrzjlx"
@@ -810,7 +806,7 @@
                         android:visibility="invisible"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -834,6 +830,7 @@
                     />
 
                 <RelativeLayout
+                    android:id="@+id/rl_afd"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -858,7 +855,7 @@
                         android:layout_centerVertical="true"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -868,7 +865,6 @@
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_afd"
@@ -883,6 +879,7 @@
                     />
 
                 <RelativeLayout
+                    android:id="@+id/rl_pcyw"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -907,7 +904,7 @@
                         android:layout_centerVertical="true"
                         />
 
-                    <EditText
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
@@ -917,7 +914,6 @@
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:gravity="end"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_pcywjg"
@@ -978,47 +974,12 @@
                     android:layout_height="@dimen/dp_1"
                     android:background="@color/xui_btn_gray_normal_color"
                     />
-
-                <RelativeLayout
+                <com.xuexiang.xui.widget.edittext.MultiLineEditText
+                    android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rl_content">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        android:gravity="top|left"
-                        android:hint="内容字数不超过1000字"
-                        android:id="@+id/et_input"
-                        android:background="@null"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/dp_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0/"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/inputing_tv"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/total_tv"
-                            />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
+                    app:mlet_hintText="内容字数不超过1000字"
+                    app:mlet_maxCount="1000" />
 
                 <View
                     android:layout_width="match_parent"

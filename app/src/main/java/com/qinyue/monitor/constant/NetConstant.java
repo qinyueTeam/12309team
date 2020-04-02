@@ -54,4 +54,12 @@ public class NetConstant {
     public static final String findPhoneByIdCard = "/rici/findPhoneByIdCard";
     //身份证号登录
     public static final String loginByIdCard = "/rici/loginByIdCard";
+    //控告提交
+    public static final String accuse = "/rici/accuse";
+    //刑事诉讼
+    public static final String criminalAppeal = "/rici/criminalAppeal";
+    //国家赔偿
+    public static final String stateCompensation = "/rici/stateCompensation";
+    //其他信访
+    public static final String otherPetition = "/rici/otherPetition";
 }

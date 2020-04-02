@@ -17,6 +17,7 @@ import com.luck.picture.lib.entity.LocalMedia;
 import com.qinyue.monitor.R;
 import com.qinyue.monitor.base.BaseActivity;
 import com.qinyue.monitor.base.BaseArrayDataBean2;
+import com.qinyue.monitor.base.BaseResBean;
 import com.qinyue.monitor.constant.NetConstant;
 import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.first.AddJczxxActivity;
@@ -381,7 +382,7 @@ public class AccusationActivity extends BaseActivity {
             break;
             case R.id.btn_submit: {//提交
                 if (nameEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入控告人姓名活单位名称").show();
+                    XToast.info(AccusationActivity.this,"请输入控告人姓名或单位名称").show();
                     break;
                 }
                 if (zjlxTv.getText().toString().trim().isEmpty()){
@@ -416,10 +417,11 @@ public class AccusationActivity extends BaseActivity {
                     XToast.info(AccusationActivity.this,"请输入内容").show();
                     break;
                 }
+                miniLoadingDialog.show();
                 if (selectPhoto.size()>0){
+                    fileIds.clear();
                     upLoadFiles(0);
                 }else {
-                    miniLoadingDialog.show();
                     submit();
                 }
             }
@@ -724,6 +726,39 @@ public class AccusationActivity extends BaseActivity {
         map.put("defendantUnitLocation",bDwdzEdit.getText().toString().trim());
         map.put("defendantDuty",bZwEdit.getText().toString().trim());
         map.put("defendantRank",bZjIndex==-1?"":bZjBeans.get(bZjIndex).getCode());
+        map.put("defendantIdentity",sfBean==null?"":sfBean.getCode());
+        map.put("defendantNPC",rddbIndex==-1?"":rddbBeans.get(rddbIndex).getCode());
+        map.put("defendantCPPCC",bZxwyTv.getText().toString().trim());
+        map.put("organizationCode",TagConstant.CODE);
+        map.put("venueCode",afdBean==null?"":afdBean.getCode());
+        map.put("content",contentTv.getContentText());
+        map.put("attachmentFile1",fileIds.get(0)==null?"":fileIds.get(0).getFileId());
+        map.put("attachmentFile2",fileIds.get(1)==null?"":fileIds.get(1).getFileId());
+        map.put("attachmentFile3",fileIds.get(2)==null?"":fileIds.get(2).getFileId());
+        map.put("userId",UserUtils.getId());
+        map.put("userKeyId",UserUtils.getKeyId());
+        map.put("username",UserUtils.getUserName());
+        map.put("userRealName",UserUtils.getRealName());
+        String ss = JsonUtils.getInstance().gson.toJson(map);
+        String aes = Base64Converter.AESEncode(TagConstant.AESKEY,ss);
+        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.accuse)
+                .add("appId", TagConstant.APPID)
+                .add("code", TagConstant.CODE)
+                .add("data", aes)
+                .asObject(BaseResBean.class)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(s -> {
+                    miniLoadingDialog.dismiss();
+                    if (s.getResult()==200){
+                        XToast.success(AccusationActivity.this,s.getMessage()).show();
+                        finish();
+                    }else {
+                        XToast.error(AccusationActivity.this,s.getMessage()).show();
+                    }
+                }, throwable -> {
+                    miniLoadingDialog.dismiss();
+                    XToast.error(AccusationActivity.this,throwable.getMessage()).show();
+                });
 
     }
 }
