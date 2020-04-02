@@ -49,7 +49,7 @@ public class NetConstant {
     //举报
     public static final String savejb = "/rici/savejb";
     //预约视频接访
-    public static final String YYSPJF = "/rici/otherPetition";
+    public static final String YYSPJF = "/rici/appointment";
     //查找当前身份证号关联了多少个手机号
     public static final String findPhoneByIdCard = "/rici/findPhoneByIdCard";
     //身份证号登录

@@ -170,7 +170,7 @@ public class ScheduleVideoActivity extends BaseActivity {
 
     }
 
-    @OnClick({R.id.et_xb,R.id.et_zjlx,R.id.et_mz,R.id.et_gj,R.id.et_ajlb,R.id.et_wdjfsj,R.id.btn_submit})
+    @OnClick({R.id.et_xb,R.id.et_zjlx,R.id.et_mz,R.id.et_gj,R.id.et_ajlb,R.id.et_wdjfsj,R.id.btn_submit,R.id.btn_cancel})
     public void OnClick(View view){
         switch (view.getId()){
             case R.id.et_xb:{
@@ -198,6 +198,9 @@ public class ScheduleVideoActivity extends BaseActivity {
                     XToast.info(ScheduleVideoActivity.this,"请输入内容").show();
                 }
             }break;
+            case R.id.btn_cancel:{
+                finish();
+            }
         }
     }
 
