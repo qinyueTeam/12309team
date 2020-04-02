@@ -1,10 +1,16 @@
 package com.qinyue.monitor.base;
 
 import android.content.Context;
+import android.util.Log;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.integration.okhttp3.OkHttpUrlLoader;
 import com.bumptech.glide.load.model.GlideUrl;
+import com.qinyue.monitor.constant.TagConstant;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshFooterCreator;
 import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
@@ -50,70 +56,82 @@ public class MyApplication extends MultiDexApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        OCR.getInstance(this).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+            @Override
+            public void onResult(AccessToken accessToken) {
+                TagConstant.ACCESSTOKEN = accessToken.getAccessToken();
+            }
+
+            @Override
+            public void onError(OCRError ocrError) {
+                Log.i("tah",ocrError.getMessage());
+            }
+        }, getApplicationContext(), "OnLxW4OVCBMevnp1nvNr3aAX", "tHjh6t0GjKyt0BB9pujYqGzPG4d94RkW");
     }
-
-    /**
-     * 初始化XUI
-     */
-    private void LnitializeXUI(){
-        XUI.init(this); //初始化UI框架
-        XUtil.init(this);
-        XUtil.debug(true);
-        XUI.debug(true);  //开启UI框架调试日志
-    }
-    static {//static 代码段可以防止内存泄露
-        //设置全局的Header构建器
-        SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
-            @NonNull
-            @Override
-            public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
-                return new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.Translate);
-            }
-        });
-        //设置全局的Footer构建器
-            SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
-                @Override
-                public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
-                    //指定为经典Footer，默认是 BallPulseFooter
-                    return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
-                }
-            });
-    }
-    /**
-     * 设置https 访问的时候对所有证书都进行信任
-     *
-     * @throws Exception
-     */
-    private OkHttpClient getSSLOkHttpClient() throws Exception {
-        final X509TrustManager trustManager = new X509TrustManager() {
-            @Override
-            public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
+            /**
+             * 初始化XUI
+             */
+            private void LnitializeXUI() {
+                XUI.init(this); //初始化UI框架
+                XUtil.init(this);
+                XUtil.debug(true);
+                XUI.debug(true);  //开启UI框架调试日志
             }
 
-            @Override
-            public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
-
-            }
-
-            @Override
-            public X509Certificate[] getAcceptedIssuers() {
-                return new X509Certificate[0];
-            }
-        };
-
-        SSLContext sslContext = SSLContext.getInstance("SSL");
-        sslContext.init(null, new TrustManager[]{trustManager}, new SecureRandom());
-        SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
-
-        return new OkHttpClient.Builder()
-                .sslSocketFactory(sslSocketFactory, trustManager)
-                .hostnameVerifier(new HostnameVerifier() {
+            static {//static 代码段可以防止内存泄露
+                //设置全局的Header构建器
+                SmartRefreshLayout.setDefaultRefreshHeaderCreator(new DefaultRefreshHeaderCreator() {
+                    @NonNull
                     @Override
-                    public boolean verify(String hostname, SSLSession session) {
-                        return true;
+                    public RefreshHeader createRefreshHeader(@NonNull Context context, @NonNull RefreshLayout layout) {
+                        return new ClassicsHeader(context).setSpinnerStyle(SpinnerStyle.Translate);
                     }
-                })
-                .build();
-    }
-}
+                });
+                //设置全局的Footer构建器
+                SmartRefreshLayout.setDefaultRefreshFooterCreator(new DefaultRefreshFooterCreator() {
+                    @Override
+                    public RefreshFooter createRefreshFooter(Context context, RefreshLayout layout) {
+                        //指定为经典Footer，默认是 BallPulseFooter
+                        return new ClassicsFooter(context).setSpinnerStyle(SpinnerStyle.Translate);
+                    }
+                });
+            }
+
+            /**
+             * 设置https 访问的时候对所有证书都进行信任
+             *
+             * @throws Exception
+             */
+            private OkHttpClient getSSLOkHttpClient() throws Exception {
+                final X509TrustManager trustManager = new X509TrustManager() {
+                    @Override
+                    public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+                    }
+
+                    @Override
+                    public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
+
+                    }
+
+                    @Override
+                    public X509Certificate[] getAcceptedIssuers() {
+                        return new X509Certificate[0];
+                    }
+                };
+
+                SSLContext sslContext = SSLContext.getInstance("SSL");
+                sslContext.init(null, new TrustManager[]{trustManager}, new SecureRandom());
+                SSLSocketFactory sslSocketFactory = sslContext.getSocketFactory();
+
+                return new OkHttpClient.Builder()
+                        .sslSocketFactory(sslSocketFactory, trustManager)
+                        .hostnameVerifier(new HostnameVerifier() {
+                            @Override
+                            public boolean verify(String hostname, SSLSession session) {
+                                return true;
+                            }
+                        })
+                        .build();
+            }
+        }

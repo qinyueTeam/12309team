@@ -17,15 +17,23 @@
 
 package com.qinyue.monitor.splash;
 
+import android.util.Log;
 import android.view.KeyEvent;
 
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.blankj.utilcode.util.SPUtils;
+import com.hjq.permissions.OnPermission;
+import com.hjq.permissions.Permission;
+import com.hjq.permissions.XXPermissions;
 import com.qinyue.monitor.home.MainActivity;
 import com.qinyue.monitor.R;
 import com.qinyue.monitor.constant.TagConstant;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
+import com.xuexiang.xui.widget.toast.XToast;
+
+import java.util.List;
 
 import me.jessyan.autosize.internal.CancelAdapt;
 
@@ -58,15 +66,34 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
      */
     @Override
     protected void onSplashFinished() {
-        boolean isAgree = SPUtils.getInstance().getBoolean(TagConstant.FIRSTSTART, true);
-        if (!isAgree) {
-            ActivityUtils.startActivity(MainActivity.class);
-            finish();
-        } else {
-            SPUtils.getInstance().put(TagConstant.FIRSTSTART, false);
-            ActivityUtils.startActivity(GuideActivity.class);
-            finish();
-        }
+        XXPermissions.with(this)
+                // 可设置被拒绝后继续申请，直到用户授权或者永久拒绝
+                //.constantRequest()
+                // 支持请求6.0悬浮窗权限8.0请求安装权限
+                //.permission(Permission.SYSTEM_ALERT_WINDOW, Permission.REQUEST_INSTALL_PACKAGES)
+                // 不指定权限则自动获取清单中的危险权限
+                .permission(Permission.Group.STORAGE)
+                .request(new OnPermission() {
+
+                    @Override
+                    public void hasPermission(List<String> granted, boolean all) {
+                        boolean isAgree = SPUtils.getInstance().getBoolean(TagConstant.FIRSTSTART, true);
+                        if (!isAgree) {
+                            ActivityUtils.startActivity(MainActivity.class);
+                            finish();
+                        } else {
+                            SPUtils.getInstance().put(TagConstant.FIRSTSTART, false);
+                            ActivityUtils.startActivity(GuideActivity.class);
+                            finish();
+                        }
+                    }
+
+                    @Override
+                    public void noPermission(List<String> denied, boolean quick) {
+                        XToast.error(SplashActivity.this,"我们需要使用储存权限").show();
+                    }
+                });
+
     }
 
     /**
