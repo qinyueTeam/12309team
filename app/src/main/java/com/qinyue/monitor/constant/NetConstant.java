@@ -62,4 +62,6 @@ public class NetConstant {
     public static final String stateCompensation = "/rici/stateCompensation";
     //其他信访
     public static final String otherPetition = "/rici/otherPetition";
+    //未成年人控告
+    public static final String juvenileAccuse = "/rici/juvenileAccuse";
 }

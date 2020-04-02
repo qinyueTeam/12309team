@@ -142,7 +142,6 @@ public class ScheduleVideoActivity extends BaseActivity {
     private int[] checkIndexAjlb = {-1, -1, -1};
     private int checkIndexType = -1;
     CertificateTypeBean certificateTypeBean;
-    private List<String> list = new ArrayList<>();
     List<String> zjlxStrBeans = new ArrayList<>();
     private int[] mzSelectOption = {-1, -1, -1};
     List<MzBean> mzBeans;
