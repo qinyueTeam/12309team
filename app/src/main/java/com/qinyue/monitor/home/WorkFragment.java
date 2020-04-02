@@ -148,10 +148,10 @@ public void onClick(View view){
             }
         }break;
         case R.id.ll_yysp:{//预约视频
-            if (UserUtils.isLogin()) {
+//            if (UserUtils.isLogin()) {
                 Intent intent = new Intent(getActivity(), ScheduleVideoActivity.class);//
                 startActivity(intent);
-            }
+//            }
         }break;
         case R.id.ll_yyck:{//预约窗口
             if (UserUtils.isLogin()) {

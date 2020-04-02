@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:background="@color/default_bkg"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
     <include
         android:id="@+id/titleview"
         layout="@layout/layout_title"/>
@@ -80,6 +81,7 @@
                         android:hint="请输入姓名或单位名称"
                         android:background="@null"
                         android:focusable="true"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -128,10 +130,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择性别"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_xb"
@@ -177,10 +179,10 @@
                     android:layout_alignParentRight="true"
                     android:hint="请选择证件类型"
                     android:background="@null"
-                    android:focusable="true"
+                    android:gravity="end"
+                    android:focusable="false"
                     android:focusableInTouchMode="true"
                     android:textColor="#000"
-                    android:editable="false"
                     android:layout_marginRight="@dimen/dp_10"
                     android:layout_centerVertical="true"
                     android:id="@+id/et_zjlx"
@@ -226,6 +228,7 @@
                         android:layout_alignParentRight="true"
                         android:hint="请输入你的证件号码"
                         android:background="@null"
+                        android:gravity="end"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -275,8 +278,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择民族"
                         android:background="@null"
-                        android:focusable="true"
-                        android:editable="false"
+                        android:focusable="false"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -325,8 +328,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择国籍"
                         android:background="@null"
-                        android:editable="false"
-                        android:focusable="true"
+                        android:gravity="end"
+                        android:focusable="false"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -375,6 +378,7 @@
                         android:layout_alignParentRight="true"
                         android:hint="请输入您的单位名称"
                         android:background="@null"
+                        android:gravity="end"
                         android:focusable="true"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -424,6 +428,7 @@
                         android:hint="请输入您的居所地"
                         android:background="@null"
                         android:focusable="true"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -472,6 +477,7 @@
                     android:hint="请输入您的电话号码"
                     android:background="@null"
                     android:focusable="true"
+                    android:gravity="end"
                     android:focusableInTouchMode="true"
                     android:textColor="#000"
                     android:layout_marginRight="@dimen/dp_10"
@@ -521,6 +527,7 @@
                         android:hint="请输入您的电子邮箱"
                         android:background="@null"
                         android:focusable="true"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -569,9 +576,9 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择类别"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
+                        android:gravity="end"
                         android:focusableInTouchMode="true"
-                        android:editable="false"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
@@ -654,39 +661,14 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/rl_content">
 
-                    <EditText
+                    <com.xuexiang.xui.widget.edittext.MultiLineEditText
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        android:gravity="top|left"
-                        android:hint="内容字数不超过1000字"
-                        android:id="@+id/et_input"
-                        android:background="@null"
+                        android:layout_height="wrap_content"
+                        app:mlet_maxCount="1000"
+                        android:id="@+id/content"
+                        app:mlet_hintText="请输入内容"
                         />
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/dp_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0/"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/inputing_tv"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/total_tv"
-                            />
-
-                    </LinearLayout>
 
                 </RelativeLayout>
 
@@ -746,10 +728,10 @@
                        android:layout_alignParentRight="true"
                        android:hint="请选择我的接访时间"
                        android:background="@null"
-                       android:focusable="true"
+                       android:focusable="false"
                        android:focusableInTouchMode="true"
-                       android:editable="false"
                        android:textColor="#000"
+                       android:gravity="end"
                        android:layout_marginRight="@dimen/dp_10"
                        android:layout_centerVertical="true"
                        android:id="@+id/et_wdjfsj"
