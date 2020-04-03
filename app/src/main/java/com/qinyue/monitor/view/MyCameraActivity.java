@@ -6,6 +6,7 @@ package com.qinyue.monitor.view;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
@@ -47,6 +48,7 @@ import com.qinyue.monitor.base.BaseActivity;
 import com.qinyue.monitor.base.BaseResBean;
 import com.qinyue.monitor.constant.NetConstant;
 import com.qinyue.monitor.constant.TagConstant;
+import com.qinyue.monitor.first.JwjdActivty;
 import com.qinyue.monitor.home.MyFragment;
 import com.qinyue.monitor.login.ChoosePhoneActivity;
 import com.qinyue.monitor.login.MyUserBean;
@@ -57,6 +59,7 @@ import com.qinyue.monitor.util.Base64Converter;
 import com.qinyue.monitor.util.FileUtil;
 import com.qinyue.monitor.util.JsonUtils;
 import com.xuexiang.xui.utils.WidgetUtils;
+import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
 import com.xuexiang.xui.widget.toast.XToast;
 import com.xuexiang.xutil.data.SPUtils;
@@ -647,14 +650,34 @@ public class MyCameraActivity extends BaseActivity {
                 .subscribe(s -> {
                     if (s.getResult()==210){
                         miniLoadingDialog.dismiss();
-                        //注册
-                        Intent intent = new Intent(MyCameraActivity.this, RegisterActivity.class);
-                        intent.putExtra("address", result.getAddress().toString());
-                        intent.putExtra("idcard", result.getIdNumber().toString());
-                        intent.putExtra("name",  result.getName().toString());
-                        intent.putExtra("sex", result.getGender().toString());
-                        intent.putExtra("where",1);
-                        startActivityForResult(intent,321);
+                        DialogLoader.getInstance().showConfirmDialog(
+                                MyCameraActivity.this,
+                                "温馨提示",
+                                "您的证件尚未在平台注册,系统将为您跳转至用户注册界面",
+                                "确定",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        //注册
+                                        Intent intent = new Intent(MyCameraActivity.this, RegisterActivity.class);
+                                        intent.putExtra("address", result.getAddress().toString());
+                                        intent.putExtra("idcard", result.getIdNumber().toString());
+                                        intent.putExtra("name",  result.getName().toString());
+                                        intent.putExtra("sex", result.getGender().toString());
+                                        intent.putExtra("where",1);
+                                        startActivityForResult(intent,321);
+                                    }
+                                },
+                                "取消",
+                                new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        finish();
+                                    }
+                                }
+                        );
                     }else if (s.getResult()==200){
                         miniLoadingDialog.dismiss();
                         //选择

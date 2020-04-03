@@ -64,4 +64,14 @@ public class NetConstant {
     public static final String otherPetition = "/rici/otherPetition";
     //未成年人控告
     public static final String juvenileAccuse = "/rici/juvenileAccuse";
+    //民事申诉
+    public static final String personAppeal = "/rici/personAppeal";
+    //行政申诉
+    public static final String admAppeal = "/rici/admAppeal";
+    //公益诉讼
+    public static final String publicPetition = "/rici/publicPetition";
+    //预约接访详情
+    public static final String appointmentDetail = "/rici/appointmentDetail";
+    //信访详情
+    public static final String petitionDetail = "/rici/petitionDetail";
 }
