@@ -98,6 +98,9 @@
            />
         <activity android:name=".login.ChoosePhoneActivity" />
         <activity android:name=".work.OtherActivity" />
+        <activity android:name=".work.GyssxsActivity" />
+        <activity android:name=".my.YyDetailsActivity" />
+        <activity android:name=".my.GyssDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

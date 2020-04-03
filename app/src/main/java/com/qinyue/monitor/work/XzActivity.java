@@ -168,7 +168,7 @@ public class XzActivity extends BaseActivity {
                         finish();
                     }break;
                     case 7:{
-                        Intent intent = new Intent(this, AccusationActivity.class);
+                        Intent intent = new Intent(this, GyssxsActivity.class);
                         startActivity(intent);
                         finish();
                     }break;

@@ -1,6 +1,7 @@
 package com.qinyue.monitor.my;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,6 +20,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
@@ -101,6 +103,26 @@ public class MyXFPagerAdapter extends PagerAdapter {
             }
         };
         recyclerView.setAdapter(commonAdapter);
+        commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
+                switch (position){
+                    case 0:{}break;
+                    case 1:{}break;
+                    case 2:{//公益诉讼
+                        Intent intent = new Intent(context,GyssDetailsActivity.class);
+                        intent.putExtra("id",allDataMap.get(position).get(i).getId()+"");
+                        intent.putExtra("title",allDataMap.get(position).get(i).getCaseType()+"");
+                        context.startActivity(intent);
+                    }break;
+                }
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
+                return false;
+            }
+        });
         smartRefreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
             public void onLoadMore(@NonNull RefreshLayout refreshLayout) {

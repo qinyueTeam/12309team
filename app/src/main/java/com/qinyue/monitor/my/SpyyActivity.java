@@ -1,6 +1,8 @@
 package com.qinyue.monitor.my;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.google.gson.Gson;
 import com.qinyue.monitor.R;
@@ -16,6 +18,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 import com.zhy.adapter.recyclerview.CommonAdapter;
+import com.zhy.adapter.recyclerview.MultiItemTypeAdapter;
 import com.zhy.adapter.recyclerview.base.ViewHolder;
 
 import java.util.ArrayList;
@@ -84,6 +87,20 @@ public class SpyyActivity extends BaseActivity {
                 holder.setText(R.id.item_state, YyjfListbean.getStatus());
             }
         };
+        commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
+                Intent intent = new Intent(SpyyActivity.this,YyDetailsActivity.class);
+                intent.putExtra("title",title[where]);
+                intent.putExtra("id",qzyjBeans.get(i).getId()+"");
+                startActivity(intent);
+            }
+
+            @Override
+            public boolean onItemLongClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
+                return false;
+            }
+        });
         recyclerView.setAdapter(commonAdapter);
         refreshLayout.setOnRefreshLoadMoreListener(new OnRefreshLoadMoreListener() {
             @Override
