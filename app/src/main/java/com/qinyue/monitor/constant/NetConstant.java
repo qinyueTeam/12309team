@@ -64,4 +64,8 @@ public class NetConstant {
     public static final String otherPetition = "/rici/otherPetition";
     //未成年人控告
     public static final String juvenileAccuse = "/rici/juvenileAccuse";
+    //未成年人刑事申诉
+    public static final String juvenileCriminal = "/rici/juvenileCriminal";
+    //未成年人申请救助
+    public static final String juvenileRescue = "/rici/juvenileRescue";
 }
