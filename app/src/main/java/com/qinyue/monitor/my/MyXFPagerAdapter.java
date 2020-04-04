@@ -52,17 +52,20 @@ public class MyXFPagerAdapter extends PagerAdapter {
     Map<Integer, SmartRefreshLayout> smartRefreshLayoutMap = new HashMap<>();
     Map<Integer, List<XfListBean>> allDataMap = new HashMap<>();
     private boolean isFirst = true;
-    public MyXFPagerAdapter(MyXFActivity context,String[] strings){
+
+    public MyXFPagerAdapter(MyXFActivity context, String[] strings) {
         this.context = context;
         this.strings = strings;
         for (int i = 0; i < types.length; i++) {
             allDataMap.put(i, new ArrayList<>());
         }
     }
+
     @Override
     public int getCount() {
-        return strings==null?0:strings.length;
+        return strings == null ? 0 : strings.length;
     }
+
     public void setSelectItem(int selectItem) {
         this.selectItem = selectItem;
         SmartRefreshLayout smartRefreshLayout = smartRefreshLayoutMap.get(selectItem);
@@ -71,6 +74,7 @@ public class MyXFPagerAdapter extends PagerAdapter {
             smartRefreshLayout.autoRefresh();
         }
     }
+
     @Override
     public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
         return view == object;
@@ -91,10 +95,10 @@ public class MyXFPagerAdapter extends PagerAdapter {
             @Override
             protected void convert(ViewHolder holder, XfListBean messageBean, int pos) {
                 pos++;
-                holder.setText(R.id.item_num, pos+"");
-                if (position==2){
+                holder.setText(R.id.item_num, pos + "");
+                if (position == 2) {
                     holder.setText(R.id.item_type, messageBean.getCaseType());
-                }else {
+                } else {
                     holder.setText(R.id.item_type, messageBean.getPetitionType());
                 }
                 holder.setText(R.id.item_where, messageBean.getOrganization());
@@ -106,15 +110,61 @@ public class MyXFPagerAdapter extends PagerAdapter {
         commonAdapter.setOnItemClickListener(new MultiItemTypeAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder viewHolder, int i) {
-                switch (position){
-                    case 0:{}break;
-                    case 1:{}break;
-                    case 2:{//公益诉讼
-                        Intent intent = new Intent(context,GyssDetailsActivity.class);
-                        intent.putExtra("id",allDataMap.get(position).get(i).getId()+"");
-                        intent.putExtra("title",allDataMap.get(position).get(i).getCaseType()+"");
+                switch (position) {
+                    case 0: {
+                        if ("控告".equals(allDataMap.get(position).get(i).getPetitionType())) {
+                            Intent intent = new Intent(context, KgDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        } else if ("刑事申诉".equals(allDataMap.get(position).get(i).getPetitionType())) {
+                            Intent intent = new Intent(context, XsssDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        } else if ("国家赔偿".equals(allDataMap.get(position).get(i).getPetitionType())){//
+                            Intent intent = new Intent(context, GjpcDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        }else if ("民事申诉".equals(allDataMap.get(position).get(i).getPetitionType())){//
+                            Intent intent = new Intent(context, MsssDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            intent.putExtra("title",  "民事申诉详情");
+                            context.startActivity(intent);
+                        }else if ("行政申诉".equals(allDataMap.get(position).get(i).getPetitionType())){//
+                            Intent intent = new Intent(context, MsssDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            intent.putExtra("title",  "行政申诉详情");
+                            context.startActivity(intent);
+                        }else {
+                            Intent intent = new Intent(context, QtDetailsActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        }
+                    }
+                    break;
+                    case 1: {//未成年人
+                        if ("控告".equals(allDataMap.get(position).get(i).getPetitionType())) {
+                            Intent intent = new Intent(context, WcnKgActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        } else if ("申请救助".equals(allDataMap.get(position).get(i).getPetitionType())) {
+                            Intent intent = new Intent(context, WcnSqjzActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        } else {//刑事申诉
+                            Intent intent = new Intent(context, WcnXsssActivity.class);
+                            intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                            context.startActivity(intent);
+                        }
+
+                    }
+                    break;
+                    case 2: {//公益诉讼
+                        Intent intent = new Intent(context, GyssDetailsActivity.class);
+                        intent.putExtra("id", allDataMap.get(position).get(i).getId() + "");
+                        intent.putExtra("title", allDataMap.get(position).get(i).getCaseType() + "");
                         context.startActivity(intent);
-                    }break;
+                    }
+                    break;
                 }
             }
 
@@ -138,19 +188,21 @@ public class MyXFPagerAdapter extends PagerAdapter {
         });
 
 
-        smartRefreshLayoutMap.put(position,smartRefreshLayout);
+        smartRefreshLayoutMap.put(position, smartRefreshLayout);
         view.setTag(position);
         container.addView(view);
-        if (isFirst && selectItem == 0&&position==2) {
+        if (isFirst && selectItem == 0 && position == 2) {
             isFirst = false;
             smartRefreshLayoutMap.get(0).autoRefresh();
         }
         return view;
     }
+
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
         container.removeView((View) object);
     }
+
     @Override
     public int getItemPosition(Object object) {
         View view = (View) object;
@@ -160,20 +212,21 @@ public class MyXFPagerAdapter extends PagerAdapter {
         }
         return POSITION_NONE;
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return strings[position];
     }
 
-    private void getData(int position,CommonAdapter<XfListBean> commonAdapter){
-        Map<String,String> map = new HashMap<>();
-        map.put("type",types[position]);
-        map.put("rows","10");
-        map.put("page",page[position]+"");
+    private void getData(int position, CommonAdapter<XfListBean> commonAdapter) {
+        Map<String, String> map = new HashMap<>();
+        map.put("type", types[position]);
+        map.put("rows", "10");
+        map.put("page", page[position] + "");
         map.put("username", UserUtils.getUserName());
-        map.put("petitionType","");
+        map.put("petitionType", "");
         String s2 = new Gson().toJson(map);
-        String aesEncode = Base64Converter.AESEncode(TagConstant.AESKEY,s2) ;
+        String aesEncode = Base64Converter.AESEncode(TagConstant.AESKEY, s2);
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.petitionList)
                 .add("appId", TagConstant.APPID)
                 .add("code", TagConstant.CODE)
@@ -181,23 +234,23 @@ public class MyXFPagerAdapter extends PagerAdapter {
                 .asObject(BaseResBean.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    if (s.getResult()==200){
-                        String a = Base64Converter.AESDncode(TagConstant.AESKEY,s.getData());
+                    if (s.getResult() == 200) {
+                        String a = Base64Converter.AESDncode(TagConstant.AESKEY, s.getData());
                         BaseListBean<XfListBean> xfListBeanBaseListBean = JsonUtils.getInstance().fromJsonArray(a, XfListBean.class);
                         if (page[position] == 0) {
                             allDataMap.get(position).clear();
                         }
-                        if (xfListBeanBaseListBean.getTotal()>0&&xfListBeanBaseListBean.getData()!=null&&xfListBeanBaseListBean.getData().size()>0){
+                        if (xfListBeanBaseListBean.getTotal() > 0 && xfListBeanBaseListBean.getData() != null && xfListBeanBaseListBean.getData().size() > 0) {
                             List<XfListBean> xfListBeans = allDataMap.get(position);
                             xfListBeans.addAll(xfListBeanBaseListBean.getData());
                             allDataMap.put(selectItem, xfListBeans);
-                            smartRefreshLayoutMap.get(position).finishLoadMore(100,true,false);
-                        }else {
-                            smartRefreshLayoutMap.get(position).finishLoadMore(100,true,true);
+                            smartRefreshLayoutMap.get(position).finishLoadMore(100, true, false);
+                        } else {
+                            smartRefreshLayoutMap.get(position).finishLoadMore(100, true, true);
                         }
                         smartRefreshLayoutMap.get(position).finishRefresh(true);
                         commonAdapter.notifyDataSetChanged();
-                    }else {
+                    } else {
                         smartRefreshLayoutMap.get(position).finishRefresh(false);
                         smartRefreshLayoutMap.get(position).finishLoadMore(false);
                     }
