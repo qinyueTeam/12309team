@@ -101,6 +101,14 @@
         <activity android:name=".work.GyssxsActivity" />
         <activity android:name=".my.YyDetailsActivity" />
         <activity android:name=".my.GyssDetailsActivity" />
+        <activity android:name=".my.WcnKgActivity" />
+        <activity android:name=".my.WcnXsssActivity" />
+        <activity android:name=".my.WcnSqjzActivity" />
+        <activity android:name=".my.KgDetailsActivity" />
+        <activity android:name=".my.XsssDetailsActivity" />
+        <activity android:name=".my.GjpcDetailsActivity" />
+        <activity android:name=".my.MsssDetailsActivity" />
+        <activity android:name=".my.QtDetailsActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"
