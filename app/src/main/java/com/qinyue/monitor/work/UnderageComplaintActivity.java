@@ -401,13 +401,14 @@ public class UnderageComplaintActivity extends BaseActivity {
             }break;
             case R.id.btn_submit:{
                 if(!etName.getText().toString().isEmpty()||!etSsdw.getText().toString().isEmpty()||!etXb.getText().toString().isEmpty()||!etZjlx.getText().toString().isEmpty()||!etZjhm.getText().toString().isEmpty()||!etSzd.getText().toString().isEmpty()||!etBkgrName.getText().toString().isEmpty()||!etYwcngz.getText().toString().isEmpty()||!etBkgrZjlx.getText().toString().isEmpty()||!etBkgrZjhm.getText().toString().isEmpty()||!etBkgrRddb.getText().toString().isEmpty()||!etWbkgrName.getText().toString().isEmpty()||!etWdwszd.getText().toString().isEmpty()||!etAfd.getText().toString().isEmpty()||!etSsssjgmc.getText().toString().isEmpty()||!etSslb.getText().toString().isEmpty()||!etKgsxfssj.getText().toString().isEmpty()||!etKgsxfsdd.getText().toString().isEmpty()||!etWcnKgxsay.getText().toString().isEmpty()||!contentTv.getEditText().getText().toString().isEmpty()){
-                    submit();
-                }else{
                     miniLoadingDialog.show();
                     if (selectPhoto.size()>0) {
                         fileIds.clear();
                         upLoadFiles(0);
+                    }else {
+                        submit();
                     }
+                }else{
                     XToast.warning(this, "请输入必输内容").show();
                 }
             }break;

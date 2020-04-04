@@ -495,13 +495,15 @@ public class ApplyHelpActivity extends BaseActivity {
             }break;
             case R.id.btn_submit:{
                 if(!etName.getText().toString().isEmpty()||!etWcnrsf.getText().toString().isEmpty()||!etXb.getText().toString().isEmpty()||!etZjlx.getText().toString().isEmpty()||!etZjhm.getText().toString().isEmpty()||!etJsdSqjz.getText().toString().isEmpty()||!etBkgrName.getText().toString().isEmpty()||!etWcnrgx.getText().toString().isEmpty()||!etWzjlx.getText().toString().isEmpty()||!etWzjhm.getText().toString().isEmpty()||!etBkgrZxwy.getText().toString().isEmpty()||!etAfd.getText().toString().isEmpty()||!etYbajc.getText().toString().isEmpty()||!etSqjzlb.getText().toString().isEmpty()||!etSqly.getText().toString().isEmpty()||!content.getEditText().getText().toString().isEmpty()||!content_jznr.getEditText().getText().toString().isEmpty()){
-                    submit();
-                }else {
                     miniLoadingDialog.show();
                     if (selectPhoto.size()>0) {
                         fileIds.clear();
                         upLoadFiles(0);
+                    }else {
+                        submit();
                     }
+                }else {
+
                     XToast.warning(this, "请输入必输内容").show();
                 }
             }break;

@@ -234,8 +234,8 @@ public class WorkFragment extends Fragment {
             break;
             case R.id.img_wcn: {
                 if (UserUtils.isLogin()) {
-                    Intent intent = new Intent(getActivity(), UnderageActivity.class);//
-//                intent.putExtra("type", 6);
+                    Intent intent = new Intent(getActivity(), XzActivity.class);//
+                    intent.putExtra("type", 6);
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(mainActivity, MyCameraActivity.class);
