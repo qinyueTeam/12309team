@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:background="@color/default_bkg"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
     <include
         android:id="@+id/titleview"
         layout="@layout/layout_title"/>
@@ -128,9 +129,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
-                        android:editable="false"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -228,11 +228,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择性别"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_xb"
@@ -283,7 +282,6 @@
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_ch"
@@ -330,11 +328,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_csrq"
@@ -380,11 +377,10 @@
                     android:layout_alignParentRight="true"
                     android:hint="请选择证件类型"
                     android:background="@null"
-                    android:focusable="true"
+                    android:focusable="false"
                     android:gravity="end"
                     android:focusableInTouchMode="true"
                     android:textColor="#000"
-                    android:editable="false"
                     android:layout_marginRight="@dimen/dp_10"
                     android:layout_centerVertical="true"
                     android:id="@+id/et_zjlx"
@@ -480,9 +476,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择民族"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
-                        android:editable="false"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -531,8 +526,7 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择国籍"
                         android:background="@null"
-                        android:editable="false"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -582,8 +576,7 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择户籍所在地"
                         android:background="@null"
-                        android:focusable="true"
-                        android:editable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -633,8 +626,7 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择住所地"
                         android:background="@null"
-                        android:focusable="true"
-                        android:editable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -783,9 +775,8 @@
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
-                        android:editable="true"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
@@ -885,9 +876,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
-                        android:editable="true"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -935,11 +925,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="true"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_jsd_sqjz"
@@ -1068,11 +1057,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_wcnrgx"
@@ -1119,11 +1107,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择性别"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_bkgr_xb"
@@ -1269,9 +1256,8 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择民族"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
-                        android:editable="false"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
                         android:layout_marginRight="@dimen/dp_10"
@@ -1369,9 +1355,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentRight="true"
-                        android:hint="请选择的职务"
+                        android:hint="请输入"
                         android:background="@null"
-                        android:editable="false"
                         android:focusable="true"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
@@ -1655,11 +1640,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_afd"
@@ -1696,6 +1680,7 @@
                         android:layout_marginLeft="@dimen/dp_5"
                         android:layout_toRightOf="@+id/txt_yaay"
                         android:layout_centerVertical="true"
+                        android:visibility="gone"
                         />
 
                     <EditText
@@ -1704,11 +1689,10 @@
                         android:layout_alignParentRight="true"
                         android:hint="请选择"
                         android:background="@null"
-                        android:focusable="true"
+                        android:focusable="false"
                         android:gravity="end"
                         android:focusableInTouchMode="true"
                         android:textColor="#000"
-                        android:editable="false"
                         android:layout_marginRight="@dimen/dp_10"
                         android:layout_centerVertical="true"
                         android:id="@+id/et_yaay"
@@ -1745,7 +1729,7 @@
                         android:layout_marginLeft="@dimen/dp_5"
                         android:layout_toRightOf="@+id/txt_ybajc"
                         android:layout_centerVertical="true"
-                        android:visibility="gone"
+
                         />
 
                     <EditText
@@ -1794,7 +1778,6 @@
                         android:layout_marginLeft="@dimen/dp_5"
                         android:layout_toRightOf="@+id/txt_sqjzlb"
                         android:layout_centerVertical="true"
-                        android:visibility="gone"
                         />
 
                     <EditText
@@ -1918,46 +1901,12 @@
                     android:background="@color/xui_btn_gray_normal_color"
                     />
 
-                <RelativeLayout
+                <com.xuexiang.xui.widget.edittext.MultiLineEditText
+                    android:id="@+id/content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rl_content">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        android:gravity="top|left"
-                        android:hint="内容字数不超过1000字"
-                        android:id="@+id/et_input"
-                        android:background="@null"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/dp_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0/"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/inputing_tv"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/total_tv"
-                            />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
+                    app:mlet_hintText="内容字数不超过1000字"
+                    app:mlet_maxCount="1000" />
 
                 <View
                     android:layout_width="match_parent"
@@ -2014,46 +1963,12 @@
                     android:background="@color/xui_btn_gray_normal_color"
                     />
 
-                <RelativeLayout
+                <com.xuexiang.xui.widget.edittext.MultiLineEditText
+                    android:id="@+id/content_jznr"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/rl_content_sqjznr">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_200"
-                        android:gravity="top|left"
-                        android:hint="内容字数不超过1000字"
-                        android:id="@+id/et_input_sqjznr"
-                        android:background="@null"
-                        />
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentBottom="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_marginRight="@dimen/dp_10">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="0/"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/inputing_tv_sqjznr"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1000"
-                            android:textColor="@color/xui_btn_gray_normal_color"
-                            android:id="@+id/total_tv_sqjznr"
-                            />
-
-                    </LinearLayout>
-
-                </RelativeLayout>
+                    app:mlet_hintText="内容字数不超过1000字"
+                    app:mlet_maxCount="1000" />
 
                 <View
                     android:layout_width="match_parent"

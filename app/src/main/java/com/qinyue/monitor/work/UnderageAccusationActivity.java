@@ -314,36 +314,30 @@ public class UnderageAccusationActivity extends BaseActivity {
     List<String> zjlxStrBeans = new ArrayList<>();
     private int[] mzSelectOption = {-1, -1, -1};
     List<MzBean> mzBeans;
-    List<MzBean> wmzBeans;
     List<MzBean> sfBeans;
     List<MzBean> bsfBeans;
-    List<MzBean> wsfBeans;
     List<MzBean> qtSfBeans;
     List<String> mzStrBeans = new ArrayList<>();
-    List<String> wmzStrBeans = new ArrayList<>();
     List<String> sfStrBeans = new ArrayList<>();
     List<String> bkgrSfStrBeans = new ArrayList<>();
     List<String> qtSfStrBeans = new ArrayList<>();
     List<MzBean> gjBeans;
-    List<MzBean> wgjBeans;
     List<String> gjStrBeans = new ArrayList<>();
     private TimePickerView mDatePicker;
     private TimePickerView wDatePicker;
-    String cardTypeCode = "";
-    int zjlxIndex = 0;
-    int WcnxIndex = 0;//控告人信息
-    int mzIndex = 0;
-    int WcnmzIndex = 0;//控告人信息
-    int gjIndex = 0;
-    int WcngjIndex = 0;//控告人信息
-    int sfIndex = 0;
-    int BkgrSfIndex = 0;
-    int QtSfIndex = 0;
+
+    int zjlxIndex = -1;
+    int WcnxIndex = -1;//控告人信息
+    int sfIndex = -1;
+    int BkgrSfIndex = -1;
+    int QtSfIndex = -1;
     private int[] checkIndexJhqk = {-1, -1, -1};
     private int[] checkIndexNl = {-1, -1, -1};
     private int clIndex = 0;
     SparseArray<LocalMedia> selectPhoto = new SparseArray<>();
     SparseArray<UpDataFileBean> fileIds = new SparseArray<>();
+    private int[] checkIndexGj = {-1, -1};
+    private int[] checkIndexMz = {-1, -1};
 
     @Override
     public String initTitleText() {
@@ -383,6 +377,7 @@ public class UnderageAccusationActivity extends BaseActivity {
                 getCertificataType();
             }break;
             case R.id.et_mz:{
+                Log.d("index",zjlxIndex+""+"----------"+checkIndexMz[0]+""+"------------=="+checkIndexGj[0]+"");
                 if(mzBeans==null){
                     getMzDataForcChild(0,etMz);
                 }else {
@@ -390,7 +385,12 @@ public class UnderageAccusationActivity extends BaseActivity {
                 }
             }break;
             case R.id.et_gj:{
-                getGjMsg();
+                Log.d("index",zjlxIndex+""+"----------"+checkIndexMz[0]+""+"------------=="+checkIndexGj[0]+"");
+                if(gjBeans==null){
+                    getGjDataForcChild(0,etGj);
+                }else {
+                    showGjPickerView(etGj, 0);
+                }
             }break;
             case R.id.et_phone:{
                 Intent intent = new Intent(UnderageAccusationActivity.this, ChooseAfdActivity.class);
@@ -416,17 +416,17 @@ public class UnderageAccusationActivity extends BaseActivity {
                 getWcnCertificataType();
             }break;
             case R.id.et_bkgr_mz:{
-                if(wmzBeans==null){
-                    getWcnMzDataForcChild(0,etBkgrMz);
+                if(mzBeans==null){
+                    getMzDataForcChild(1,etBkgrMz);
                 }else {
-                    showWcnMzPickerView(etBkgrMz, 0);
+                    showMzPickerView(etBkgrMz, 1);
                 }
             }break;
             case R.id.et_bkgr_gj:{
-                if(wgjBeans==null){
-                    getWcnGjMsg();
+                if(gjBeans==null){
+                    getGjDataForcChild(1,etGj);
                 }else {
-                    showWcnGjPickerView(etBkgrGj, 0);
+                    showGjPickerView(etGj, 1);
                 }
             }break;
             case R.id.et_bkgr_dwmc:{
@@ -509,8 +509,10 @@ public class UnderageAccusationActivity extends BaseActivity {
         map.put("juvenileCertificateNumber",etZjhm.getText().toString().trim());
         map.put("juvenileCertificateType",certificateTypeBean.getData().get(zjlxIndex).getCode()+"");
         map.put("juvenileBirthday",et_csrq.getText().toString().trim());
-        map.put("juvenileNation",mzBeans.get(mzIndex).getCode()+"");
-        map.put("juvenileNationality",gjBeans.get(gjIndex).getCode()+"");
+        map.put("juvenileNation",checkIndexMz[0]==-1?"":mzBeans.get(checkIndexMz[0]).getCode());
+        if(gjBeans.size()>0){
+            map.put("juvenileNationality",checkIndexGj[0]==-1?"":gjBeans.get(checkIndexGj[0]).getCode());
+        }
         map.put("juvenileDomicile",etPhone.getText().toString().trim());
         map.put("juvenileResidence",etEmail.getText().toString().trim());
         map.put("juvenileAddress",etZsddz.getText().toString().trim());
@@ -524,8 +526,8 @@ public class UnderageAccusationActivity extends BaseActivity {
         map.put("plaintiffSex",etBkgrXb.getText().toString().trim());
         map.put("plaintiffCertificateType",etBkgrZjlx.getText().toString().trim());
         map.put("plaintiffCertificateNumber",etBkgrZjhm.getText().toString().trim());
-        map.put("plaintiffNation",mzBeans.get(WcnmzIndex).getCode()+"");
-        map.put("plaintiffNationality",gjBeans.get(WcngjIndex).getCode()+"");
+        map.put("plaintiffNation",checkIndexMz[1]==-1?"":mzBeans.get(checkIndexMz[1]).getCode());
+        map.put("plaintiffNationality",checkIndexGj[1]==-1?"":gjBeans.get(checkIndexGj[1]).getCode());
         map.put("plaintiffArea",etBkgrDwmc.getText().toString().trim());
         map.put("plaintiffResidence",etBkgrDwdz.getText().toString().trim());
         map.put("plaintiffIdentity",sfBeans.get(sfIndex).getCode());
@@ -788,7 +790,7 @@ public class UnderageAccusationActivity extends BaseActivity {
             }
         })
                 .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(zjlxIndex)
                 .build();
         pvOptions.setPicker(zjlxStrBeans);
         pvOptions.show();
@@ -803,12 +805,12 @@ public class UnderageAccusationActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 WcnxIndex = options1;
                 tv.setText(certificateTypeBean.getData().get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(WcnxIndex)
                 .build();
         pvOptions.setPicker(zjlxStrBeans);
         pvOptions.show();
@@ -840,31 +842,7 @@ public class UnderageAccusationActivity extends BaseActivity {
                 });
     }
 
-    public void getWcnMzDataForcChild(int pos, EditText textView) {
-        miniLoadingDialog.show();
-        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
-                .add("appId", TagConstant.APPID)
-                .add("code", TagConstant.CODE)
-                .add("type", "2")
-                .asParser(new SimpleParser<BaseArrayDataBean2<MzBean>>() {
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    miniLoadingDialog.dismiss();
-                    if (s.getResult() == 200) {
-                        wmzBeans = s.getData();
-                        for (int i = 0; i < wmzBeans.size(); i++) {
-                            wmzStrBeans.add(wmzBeans.get(i).getName());
-                        }
-                        showWcnMzPickerView(textView, pos);
-                    } else {
-                        XToast.error(UnderageAccusationActivity.this, s.getMsg()).show();
-                    }
-                }, throwable -> {
-                    miniLoadingDialog.dismiss();
-                    XToast.error(UnderageAccusationActivity.this, throwable.getMessage()).show();
-                });
-    }
+
 
     public void getSf(int pos, EditText textView) {
         miniLoadingDialog.show();
@@ -906,7 +884,6 @@ public class UnderageAccusationActivity extends BaseActivity {
                     if (s.getResult() == 200) {
                         bsfBeans = s.getData();
                         for (int i = 0; i < bsfBeans.size(); i++) {
-                            bkgrSfStrBeans.clear();
                             bkgrSfStrBeans.add(bsfBeans.get(i).getName());
                         }
                         showBkgrSfPickerView(textView, pos);
@@ -933,7 +910,6 @@ public class UnderageAccusationActivity extends BaseActivity {
                     if (s.getResult() == 200) {
                         qtSfBeans = s.getData();
                         for (int i = 0; i < qtSfBeans.size(); i++) {
-                            qtSfStrBeans.clear();
                             qtSfStrBeans.add(qtSfBeans.get(i).getName());
                         }
                         showqtSfPickerView(textView, pos);
@@ -953,38 +929,19 @@ public class UnderageAccusationActivity extends BaseActivity {
         OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
-                mzIndex = options1;
+//                mzIndex = options1;
                 tv.setText(mzBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+                checkIndexMz[where] = options1;
                 return false;
             }
         })
                 .setTitleText("民族")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(checkIndexMz[where])
                 .build();
         pvOptions.setPicker(mzStrBeans);
         pvOptions.show();
     }
 
-    /**
-     * 未成年民族
-     */
-    private void showWcnMzPickerView(EditText tv, int where) {
-        OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
-            @Override
-            public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
-                WcnmzIndex = options1;
-                tv.setText(wmzBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
-                return false;
-            }
-        })
-                .setTitleText("民族")
-                .setSelectOptions(mzSelectOption[where])
-                .build();
-        pvOptions.setPicker(wmzStrBeans);
-        pvOptions.show();
-    }
 
     /**
      * 身份
@@ -995,12 +952,12 @@ public class UnderageAccusationActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 sfIndex = options1;
                 tv.setText(sfBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("身份")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(sfIndex)
                 .build();
         pvOptions.setPicker(sfStrBeans);
         pvOptions.show();
@@ -1012,12 +969,12 @@ public class UnderageAccusationActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 BkgrSfIndex = options1;
                 tv.setText(bsfBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("身份")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(BkgrSfIndex)
                 .build();
         pvOptions.setPicker(sfStrBeans);
         pvOptions.show();
@@ -1029,18 +986,18 @@ public class UnderageAccusationActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 QtSfIndex = options1;
                 tv.setText(qtSfBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("其他身份")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(QtSfIndex)
                 .build();
         pvOptions.setPicker(qtSfStrBeans);
         pvOptions.show();
     }
 
-    public void getGjMsg(){
+    public void getGjDataForcChild(int pos,EditText tv) {
         miniLoadingDialog.show();
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
                 .add("appId", TagConstant.APPID)
@@ -1056,7 +1013,7 @@ public class UnderageAccusationActivity extends BaseActivity {
                         for (int i = 0; i < gjBeans.size(); i++) {
                             gjStrBeans.add(gjBeans.get(i).getName());
                         }
-                        showGjPickerView(etGj, 0);
+                        showGjPickerView(tv,pos);
                     } else {
                         XToast.error(UnderageAccusationActivity.this, s.getMsg()).show();
                     }
@@ -1066,31 +1023,6 @@ public class UnderageAccusationActivity extends BaseActivity {
                 });
     }
 
-    public void getWcnGjMsg(){
-        miniLoadingDialog.show();
-        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
-                .add("appId", TagConstant.APPID)
-                .add("code", TagConstant.CODE)
-                .add("type", "3")
-                .asParser(new SimpleParser<BaseArrayDataBean2<MzBean>>() {
-                })
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(s -> {
-                    miniLoadingDialog.dismiss();
-                    if (s.getResult() == 200) {
-                        wgjBeans = s.getData();
-                        for (int i = 0; i < wgjBeans.size(); i++) {
-                            gjStrBeans.add(wgjBeans.get(i).getName());
-                        }
-                        showWcnGjPickerView(etBkgrGj, 0);
-                    } else {
-                        XToast.error(UnderageAccusationActivity.this, s.getMsg()).show();
-                    }
-                }, throwable -> {
-                    miniLoadingDialog.dismiss();
-                    XToast.error(UnderageAccusationActivity.this, throwable.getMessage()).show();
-                });
-    }
 
     /**
      * 国籍
@@ -1099,38 +1031,19 @@ public class UnderageAccusationActivity extends BaseActivity {
         OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
-                gjIndex = options1;
+//                gjIndex = options1;
                 tv.setText(gjBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+                checkIndexGj[where] = options1;
                 return false;
             }
         })
                 .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(checkIndexGj[where])
                 .build();
         pvOptions.setPicker(gjStrBeans);
         pvOptions.show();
     }
 
-    /**
-     * 未成年国籍
-     */
-    private void showWcnGjPickerView(EditText tv, int where) {
-        OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
-            @Override
-            public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
-                WcngjIndex = options1;
-                tv.setText(wgjBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
-                return false;
-            }
-        })
-                .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
-                .build();
-        pvOptions.setPicker(gjStrBeans);
-        pvOptions.show();
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

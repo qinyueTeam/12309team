@@ -354,12 +354,12 @@ public class ScheduleVideoActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 mzIndex = options1;
                 tv.setText(mzBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("民族")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(mzIndex)
                 .build();
         pvOptions.setPicker(mzStrBeans);
         pvOptions.show();
@@ -441,12 +441,12 @@ public class ScheduleVideoActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 zjlxIndex = options1;
                 tv.setText(certificateTypeBean.getData().get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(zjlxIndex)
                 .build();
         pvOptions.setPicker(zjlxStrBeans);
         pvOptions.show();
@@ -484,12 +484,12 @@ public class ScheduleVideoActivity extends BaseActivity {
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
                 gjIndex = options1;
                 tv.setText(gjBeans.get(options1).getName());
-                mzSelectOption[where] = options1;
+//                mzSelectOption[where] = options1;
                 return false;
             }
         })
                 .setTitleText("")
-                .setSelectOptions(mzSelectOption[where])
+                .setSelectOptions(gjIndex)
                 .build();
         pvOptions.setPicker(gjStrBeans);
         pvOptions.show();
