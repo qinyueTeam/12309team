@@ -46,7 +46,7 @@ public class MyView extends View {
         init();
     }
     private void init(){
-        mPaint.setTextSize(35);
+        mPaint.setTextSize(28);
         mPaint.setAntiAlias(true);
     }
 

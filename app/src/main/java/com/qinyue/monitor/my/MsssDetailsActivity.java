@@ -139,7 +139,7 @@ public class MsssDetailsActivity extends BaseActivity {
 
     @Override
     public String initTitleText() {
-        return "title";
+        return title;
     }
 
     @Override

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 
 import com.qinyue.monitor.R;
+import com.xuexiang.xui.utils.StatusBarUtils;
 import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.dialog.MiniLoadingDialog;
@@ -68,7 +69,7 @@ public abstract class BaseActivity extends AppCompatActivity{
         bottomNavigation();
         init();
         initData(savedInstanceState);
-
+        StatusBarUtils.setStatusBarLightMode(this);
     }
     @Override
     public void setRequestedOrientation(int requestedOrientation) {

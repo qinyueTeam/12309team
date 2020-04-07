@@ -280,10 +280,14 @@ public class FirstFragment extends Fragment {
                 startActivity(new Intent(mainActivity, JwxzActivity.class));
             }break;
             case R.id.lin_jwjd:{//检务监督
-                startActivity(new Intent(mainActivity, JwjdActivty.class));
+                Intent intent = new Intent(mainActivity, JwjdActivty.class);
+                intent.putExtra("title","检务监督");
+                startActivity(intent);
             }break;
             case R.id.lin_shce:{//扫黑除恶
-                startActivity(new Intent(mainActivity, JwjdActivty.class));
+                Intent intent = new Intent(mainActivity, JwjdActivty.class);
+                intent.putExtra("title","扫黑除恶");
+                startActivity(intent);
             }break;
             case R.id.lin_jczxx:{//检察长信箱
                 if (UserUtils.isLogin()) {

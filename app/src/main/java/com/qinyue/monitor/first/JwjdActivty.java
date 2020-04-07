@@ -88,9 +88,11 @@ public class JwjdActivty extends BaseActivity {
     List<ZzmmBean> sxlyBeans;
     List<String> sxlyStrBeans = new ArrayList<>();
 
+    private String title = "";
+
     @Override
     public String initTitleText() {
-        return "检务监督";
+        return title;
     }
 
     @Override
@@ -117,6 +119,7 @@ public class JwjdActivty extends BaseActivity {
     protected void initview() {
         jbrLin.addView(addJbrView(0));
         bjbrLin.addView(addBjbrView(0));
+        title = getIntent().getStringExtra("title");
     }
 
     private View addJbrView(int pos) {
