@@ -21,6 +21,9 @@ public class BaseArrayDataBean2<T> implements Serializable {
     }
 
     public String getMsg() {
+        if ("接口调用成功".equals(msg)){
+            return "操作成功";
+        }
         return msg;
     }
 

@@ -21,6 +21,9 @@ public class BaseResBean implements Serializable {
     }
 
     public String getMessage() {
+        if ("接口调用成功".equals(message)){
+            return "操作成功";
+        }
         return message;
     }
 

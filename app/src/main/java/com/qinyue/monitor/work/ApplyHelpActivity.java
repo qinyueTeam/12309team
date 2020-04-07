@@ -310,9 +310,9 @@ public class ApplyHelpActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        etBkgrName.setText(UserUtils.getRealName());
-        etWzjlx.setText("居民身份证");
-        etWzjhm.setText(UserUtils.getIdCard());
+//        etBkgrName.setText(UserUtils.getRealName());
+//        etWzjlx.setText("居民身份证");
+//        etWzjhm.setText(UserUtils.getIdCard());
     }
 
     @Override

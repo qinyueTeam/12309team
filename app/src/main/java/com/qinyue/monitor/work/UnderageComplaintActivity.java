@@ -366,9 +366,9 @@ public class UnderageComplaintActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        etBkgrName.setText(UserUtils.getRealName());
-        etBkgrZjlx.setText("居民身份证");
-        etBkgrZjhm.setText(UserUtils.getIdCard());
+//        etBkgrName.setText(UserUtils.getRealName());
+//        etBkgrZjlx.setText("居民身份证");
+//        etBkgrZjhm.setText(UserUtils.getIdCard());
     }
 
     @Override

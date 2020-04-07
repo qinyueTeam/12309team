@@ -282,7 +282,7 @@ public class JwjdActivty extends BaseActivity {
                 if (sxlyBeans == null) {
                     XToast.error(JwjdActivty.this, "数据解析异常").show();
                 } else {
-                    showSxlyPickerView(zzmm, pos);
+                    showSxlyPickerView(sxly, pos);
                 }
             }
         });
