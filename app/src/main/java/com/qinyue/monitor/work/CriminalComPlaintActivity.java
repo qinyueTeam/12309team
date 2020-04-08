@@ -664,7 +664,7 @@ public class CriminalComPlaintActivity extends BaseActivity {
         map.put("source",TagConstant.SOURCE);
         map.put("plaintiffName",nameEdit.getText().toString().trim());
         map.put("relationship",yyagxIndex==-1?"":yyagxStrings[yyagxIndex]);
-        map.put("plaintiffSex",checkIndexSex[0]+"");
+        map.put("plaintiffSex",sexTv.getText().toString().trim());
         map.put("plaintiffCertificateType",zjIndex==-1?"":zjBeans.get(zjIndex).getCode());
         map.put("plaintiffCertificateNumber",zjhmEdit.getText().toString().trim());
         map.put("plaintiffNation",mzIndex==-1?"":mzBeans.get(mzIndex).getCode());

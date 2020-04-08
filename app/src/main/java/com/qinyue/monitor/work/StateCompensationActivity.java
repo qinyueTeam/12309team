@@ -564,7 +564,7 @@ public class StateCompensationActivity extends BaseActivity {
         Map<String, String> map = new HashMap<>();
         map.put("source", TagConstant.SOURCE);
         map.put("plaintiffName", nameEdit.getText().toString().trim());
-        map.put("plaintiffSex", sexIndex + "");
+        map.put("plaintiffSex", sexTv.getText().toString().trim());
         map.put("plaintiffCertificateType", zjCheckIndex[0] == -1 ? "" : zjBeans.get(zjCheckIndex[0]).getCode());
         map.put("agentCertificateType", zjCheckIndex[1] == -1 ? "" : zjBeans.get(zjCheckIndex[1]).getCode());
         map.put("plaintiffCertificateNumber", zjhmEdit.getText().toString().trim());

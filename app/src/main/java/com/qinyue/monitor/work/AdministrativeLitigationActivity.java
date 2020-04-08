@@ -670,7 +670,7 @@ public class AdministrativeLitigationActivity extends BaseActivity {
         map.put("source",TagConstant.SOURCE);
         map.put("plaintiffName",nameEdit.getText().toString().trim());
         map.put("relationship",checkIndexYyagx[0]==-1?"":yyagxStrings[checkIndexYyagx[0]]);
-        map.put("plaintiffSex",checkIndexSex[0]+"");
+        map.put("plaintiffSex",sexTv.getText().toString().trim());
         map.put("plaintiffCertificateType",checkIndexZjlx[0]==-1?"":zjBeans.get(checkIndexZjlx[0]).getCode());
         map.put("plaintiffCertificateNumber",zjhmEdit.getText().toString().trim());
         map.put("plaintiffNationality",checkIndexGj[0]==-1?"":gjBeans.get(checkIndexGj[0]).getCode());

@@ -718,7 +718,7 @@ public class AccusationActivity extends BaseActivity {
         Map<String,String> map = new HashMap<>();
         map.put("source",TagConstant.SOURCE);
         map.put("plaintiffName",nameEdit.getText().toString().trim());
-        map.put("plaintiffSex",checkIndexSex[0]+"");
+        map.put("plaintiffSex",xbTv.getText().toString().trim());
         map.put("plaintiffCertificateType",zjIndex==-1?"":zjBeans.get(zjIndex).getCode());
         map.put("plaintiffCertificateNumber",zjhmEdit.getText().toString().trim());
         map.put("plaintiffNation",mzIndex==-1?"":mzBeans.get(mzIndex).getCode());
