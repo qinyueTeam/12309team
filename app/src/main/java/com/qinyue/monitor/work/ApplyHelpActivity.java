@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -495,6 +496,18 @@ public class ApplyHelpActivity extends BaseActivity {
             }break;
             case R.id.btn_submit:{
                 if(!etName.getText().toString().isEmpty()||!etWcnrsf.getText().toString().isEmpty()||!etXb.getText().toString().isEmpty()||!etZjlx.getText().toString().isEmpty()||!etZjhm.getText().toString().isEmpty()||!etJsdSqjz.getText().toString().isEmpty()||!etBkgrName.getText().toString().isEmpty()||!etWcnrgx.getText().toString().isEmpty()||!etWzjlx.getText().toString().isEmpty()||!etWzjhm.getText().toString().isEmpty()||!etBkgrZxwy.getText().toString().isEmpty()||!etAfd.getText().toString().isEmpty()||!etYbajc.getText().toString().isEmpty()||!etSqjzlb.getText().toString().isEmpty()||!etSqly.getText().toString().isEmpty()||!content.getEditText().getText().toString().isEmpty()||!content_jznr.getEditText().getText().toString().isEmpty()){
+                    if ("居民身份证".equals(etZjlx.getText().toString().trim())&&!RegexUtils.isIDCard18(etZjhm.getText().toString().trim())){
+                        XToast.info(this,"未成年人信息证件号码错误").show();
+                        break;
+                    }
+                    if ("居民身份证".equals(etWzjlx.getText().toString().trim())&&!RegexUtils.isIDCard18(etWzjhm.getText().toString().trim())){
+                        XToast.info(this,"申请人信息证件号码错误").show();
+                        break;
+                    }
+                    if (!RegexUtils.isMobileSimple(etBkgrZxwy.getText().toString().trim())){
+                        XToast.info(this,"电话号码错误").show();
+                        break;
+                    }
                     miniLoadingDialog.show();
                     if (selectPhoto.size()>0) {
                         fileIds.clear();

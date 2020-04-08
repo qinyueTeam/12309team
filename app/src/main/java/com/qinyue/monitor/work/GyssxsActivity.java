@@ -9,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -236,8 +237,16 @@ public class GyssxsActivity extends BaseActivity implements ImageSelectGridAdapt
                     XToast.info(GyssxsActivity.this,"请输入线索提供人姓名").show();
                     break;
                 }
+                if (!idcardEdit.getText().toString().trim().isEmpty()&&!RegexUtils.isIDCard18(idcardEdit.getText().toString().trim())){
+                    XToast.info(this,"证件号码错误").show();
+                    break;
+                }
                 if (xsPhoneEdit.getText().toString().trim().isEmpty()){
                     XToast.info(GyssxsActivity.this,"请输入线索提供人联系方式").show();
+                    break;
+                }
+                if (!RegexUtils.isMobileSimple(xsPhoneEdit.getText().toString().trim())){
+                    XToast.info(this,"电话号码错误").show();
                     break;
                 }
                 miniLoadingDialog.show();

@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -100,6 +101,10 @@ public class AddQzyjxActivity extends BaseActivity {
                 }
                 if (phoneEdit.getText().toString().trim().isEmpty()) {
                     XToast.info(AddQzyjxActivity.this, "请输入手机号码").show();
+                    break;
+                }
+                if (!RegexUtils.isMobileSimple(phoneEdit.getText().toString().trim())){
+                    XToast.info(this,"电话号码错误").show();
                     break;
                 }
                 if (typeTv.getText().toString().trim().isEmpty()) {

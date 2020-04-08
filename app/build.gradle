@@ -7,8 +7,8 @@ android {
         applicationId "com.qinyue.monitor"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 5
-        versionName "1.0.0.4"
+        versionCode 6
+        versionName "1.0.0.5"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
@@ -90,5 +90,4 @@ dependencies {
     //noinspection GradlePath
     implementation files('libs\\ocr-sdk.jar')
     implementation project(path: ':ocr_ui')
-    implementation files('libs\\robotservice-V4.19.jar')
 }

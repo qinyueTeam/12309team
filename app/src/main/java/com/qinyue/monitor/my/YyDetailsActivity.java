@@ -15,7 +15,9 @@ import com.qinyue.monitor.util.JsonUtils;
 import com.qinyue.monitor.util.UserUtils;
 import com.xuexiang.xui.widget.statelayout.StatefulLayout;
 import com.xuexiang.xui.widget.toast.XToast;
+import com.xuexiang.xutil.data.DateUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -148,7 +150,12 @@ public class YyDetailsActivity extends BaseActivity {
                         ajlbTv.setText(yyDetailsBean.getCaseType());
                         nrzyTv.setText(yyDetailsBean.getContent());
                         jsdTv.setText(yyDetailsBean.getHome());
-                        timeTv.setText(yyDetailsBean.getReceiveTime());
+                        if (yyDetailsBean.getDateCreated()!=null&&yyDetailsBean.getDateCreated().contains("T")){
+                            String[] ts = yyDetailsBean.getDateCreated().split("T");
+                            if (ts.length>1){
+                                timeTv.setText(ts[0]);
+                            }
+                        }
                         ztTv.setText(yyDetailsBean.getStatus());
                         if ("已办理".equals(yyDetailsBean.getStatus())){
                             jgLin.setVisibility(View.VISIBLE);

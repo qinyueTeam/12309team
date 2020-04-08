@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.qinyue.monitor.R;
 import com.qinyue.monitor.base.BaseActivity;
 import com.qinyue.monitor.base.BaseArrayDataBean2;
@@ -188,6 +189,14 @@ public class WindowInterViewActivity extends BaseActivity {
             }break;
             case R.id.btn_submit:{
                 if(!etName.getText().toString().trim().isEmpty()||!etZjlx.getText().toString().trim().isEmpty()||!etZjhm.getText().toString().trim().isEmpty()||!etSzd.getText().toString().trim().isEmpty()||!etPhone.getText().toString().trim().isEmpty()||!contentView.getEditText().getText().toString().trim().isEmpty()){
+                    if ("居民身份证".equals(etZjlx.getText().toString().trim())&&!RegexUtils.isIDCard18(etZjhm.getText().toString().trim())){
+                        XToast.info(this,"证件号码错误").show();
+                        break;
+                    }
+                    if (!RegexUtils.isMobileSimple(etPhone.getText().toString().trim())){
+                        XToast.info(this,"电话号码错误").show();
+                        break;
+                    }
                     submit();
                 }else {
                     XToast.info(WindowInterViewActivity.this,"请输入内容").show();

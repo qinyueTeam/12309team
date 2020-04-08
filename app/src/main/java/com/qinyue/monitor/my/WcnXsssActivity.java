@@ -204,7 +204,12 @@ public class WcnXsssActivity extends BaseActivity {
                         wcnChTv.setText(yyDetailsBean.getJuvenileNickname());
                         wcnZjlxTv.setText(yyDetailsBean.getJuvenileCertificateType());
                         wcnZjhTv.setText(yyDetailsBean.getJuvenileCertificateNumber());
-                        wcnCsrqTv.setText(yyDetailsBean.getJuvenileBirthday());
+                        if (yyDetailsBean.getJuvenileBirthday()!=null&&yyDetailsBean.getJuvenileBirthday().contains("T")){
+                            String[] ts = yyDetailsBean.getJuvenileBirthday().split("T");
+                            if (ts.length>1){
+                                wcnCsrqTv.setText(ts[0]);
+                            }
+                        }
                         wcnMzTv.setText(yyDetailsBean.getJuvenileNation());
                         wcnGjTv.setText(yyDetailsBean.getJuvenileNationality());
                         wcnHjszdTv.setText(yyDetailsBean.getJuvenileDomicile());
@@ -240,7 +245,12 @@ public class WcnXsssActivity extends BaseActivity {
                         ssJglxTv.setText(yyDetailsBean.getCaseOrgType());
                         ssJgmcTv.setText(yyDetailsBean.getCaseOrgName());
                         ssLbTv.setText(yyDetailsBean.getAppealType());
-                        ssTimeTv.setText(yyDetailsBean.getCaseDate());
+                        if (yyDetailsBean.getCaseDate()!=null&&yyDetailsBean.getCaseDate().contains("T")){
+                            String[] ts = yyDetailsBean.getCaseDate().split("T");
+                            if (ts.length>1){
+                                ssTimeTv.setText(ts[0]);
+                            }
+                        }
                         ssFsddTv.setText(yyDetailsBean.getCaseArea());
                         ssYaayTv.setText(yyDetailsBean.getCaseReason());
                         ssSsnrTv.setText(yyDetailsBean.getContent());

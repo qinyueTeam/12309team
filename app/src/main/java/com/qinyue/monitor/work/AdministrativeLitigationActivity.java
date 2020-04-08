@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -237,12 +238,20 @@ public class AdministrativeLitigationActivity extends BaseActivity {
                     XToast.info(AdministrativeLitigationActivity.this,"请输入申诉人证件号码").show();
                     break;
                 }
+                if ("居民身份证".equals(zjlxTv.getText().toString().trim())&&!RegexUtils.isIDCard18(zjhmEdit.getText().toString().trim())){
+                    XToast.info(AdministrativeLitigationActivity.this,"证件号码错误").show();
+                    break;
+                }
                 if (szdEdit.getText().toString().trim().isEmpty()){
                     XToast.info(AdministrativeLitigationActivity.this,"请输入您的居所地").show();
                     break;
                 }
                 if (phoneEdit.getText().toString().trim().isEmpty()){
                     XToast.info(AdministrativeLitigationActivity.this,"请输入您的电话号码").show();
+                    break;
+                }
+                if (!RegexUtils.isMobileSimple(phoneEdit.getText().toString().trim())){
+                    XToast.info(AdministrativeLitigationActivity.this,"电话号码错误").show();
                     break;
                 }
                 if (bNameEdit.getText().toString().trim().isEmpty()){

@@ -228,7 +228,12 @@ public class WcnKgActivity extends BaseActivity {
                         bkgrGzdwTv.setText(yyDetailsBean.getDefendantUnit());
 
                         kgAfdTv.setText(yyDetailsBean.getCaseArea());
-                        kgTimeTv.setText(yyDetailsBean.getCaseDate());
+                        if (yyDetailsBean.getCaseDate()!=null&&yyDetailsBean.getCaseDate().contains("T")){
+                            String[] ts = yyDetailsBean.getCaseDate().split("T");
+                            if (ts.length>1){
+                                kgTimeTv.setText(ts[0]);
+                            }
+                        }
                         kgNrTv.setText(yyDetailsBean.getContent());
                         kgXsayTv.setText(yyDetailsBean.getCaseReason());
                         kgQtxsayTv.setText(yyDetailsBean.getAccuseOtherReason());

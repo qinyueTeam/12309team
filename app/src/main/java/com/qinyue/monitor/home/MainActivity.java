@@ -19,10 +19,6 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.ainirobot.coreservice.client.ApiListener;
-import com.ainirobot.coreservice.client.RobotApi;
-import com.ainirobot.coreservice.client.speech.SkillApi;
-import com.ainirobot.coreservice.client.speech.SkillCallback;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.ConvertUtils;
 import com.blankj.utilcode.util.SPUtils;
@@ -34,7 +30,6 @@ import com.qinyue.monitor.base.BaseActivity;
 import com.qinyue.monitor.constant.TagConstant;
 import com.qinyue.monitor.splash.GuideActivity;
 import com.qinyue.monitor.splash.SplashActivity;
-import com.qinyue.monitor.yuying.ModuleCallback;
 import com.xuexiang.xui.widget.toast.XToast;
 
 import net.lucode.hackware.magicindicator.FragmentContainerHelper;
@@ -196,7 +191,7 @@ public class MainActivity extends BaseActivity {
 
                     @Override
                     public void hasPermission(List<String> granted, boolean all) {
-                        lineServer();
+
                     }
 
                     @Override
@@ -243,78 +238,5 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-    final SkillApi skillApi = new SkillApi();
 
-    private void line() {
-        skillApi.connectApi(this, new ApiListener() {
-            @Override
-            public void handleApiDisabled() {
-                Log.i("hhhhh", "失败");
-            }
-
-            @Override
-            public void handleApiConnected() { //语⾳服务连接成功，注册语⾳回调
-                skillApi.registerCallBack(mSkillCallback);
-                Log.i("hhhhh", "语⾳服务连接成功");
-            }
-
-            @Override
-            public void handleApiDisconnected() { //语⾳服务已断开
-                Log.i("hhhhh", "语⾳服务已断开");
-            }
-        });
-        skillApi.setRecognizable(true);
-    }
-
-    SkillCallback mSkillCallback = new SkillCallback() {
-        @Override
-        public void onSpeechParResult(String s) throws RemoteException { //语⾳临时识别结果
-            Log.i("hhhhh", "语⾳临时识别结果:" + s);
-        }
-
-        @Override
-        public void onStart() throws RemoteException { //开始识别
-            Log.i("hhhhh", "语⾳开始识别");
-        }
-
-        @Override
-        public void onStop() throws RemoteException { //识别结束
-            Log.i("hhhhh", "语⾳识别结束");
-        }
-
-        @Override
-        public void onVolumeChange(int volume) throws RemoteException { //识别的声⾳⼤⼩变化
-        }
-
-        /*** @param status 0 : 正常返回 * 1 : other返回 * 2 : 噪⾳或single_other返回 * 3 : 超时 * 4 : 被强制取消 * 5 : asr结果提前结束，未经过NLU * 6 : 全双⼯语意相同情况下，other返回 */
-        @Override
-        public void onQueryEnded(int status) throws RemoteException {
-        }
-
-        @Override
-        public void onQueryAsrResult(String asrResult) throws RemoteException { //asrResult ：最终识别结果
-            Log.i("hhhhh", "语⾳最终识别结果:" + asrResult);
-        }
-    };
-
-    private void lineServer() {
-        RobotApi.getInstance().connectServer(this, new ApiListener() {
-            @Override
-            public void handleApiDisabled() {
-                Log.i("hhhhh", "连接服务器失败");
-            }
-
-            @Override
-            public void handleApiConnected() { //Server已连接，设置接收请求的回调，包含语⾳指令、系统事件等
-                RobotApi.getInstance().setCallback(new ModuleCallback());
-                Log.i("hhhhh", "Server已连接");
-                line();
-            }
-
-            @Override
-            public void handleApiDisconnected() { //连接已断开
-                Log.i("hhhhh", "连接已断开");
-            }
-        });
-    }
 }

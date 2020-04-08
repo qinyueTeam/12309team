@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.qinyue.monitor.R;
@@ -556,8 +557,19 @@ public class JwjdActivty extends BaseActivity {
             case R.id.but_yes: {//提交
                 for (int i = 0; i < bjbrViews.size(); i++) {
                     View view1 = bjbrViews.get(i);
+                    View view2 = jbrViews.get(i);
                     TextView name = view1.findViewById(R.id.et_name);
                     TextView et_dw = view1.findViewById(R.id.et_dw);
+                    EditText et_idcard = view2.findViewById(R.id.et_idcard);
+                    EditText et_phone = view2.findViewById(R.id.et_phone);
+                    if (!et_idcard.getText().toString().trim().isEmpty()&& !RegexUtils.isIDCard18(et_idcard.getText().toString().trim())) {
+                        XToast.info(JwjdActivty.this, "第" + (i + 1) + "位举报人的身份证号码错误").show();
+                        return;
+                    }
+                    if (!et_phone.getText().toString().trim().isEmpty()&& !RegexUtils.isMobileSimple(et_phone.getText().toString().trim())) {
+                        XToast.info(JwjdActivty.this, "第" + (i + 1) + "位举报人的联系电话错误").show();
+                        return;
+                    }
                     if (name.getText().toString().trim().isEmpty()) {
                         XToast.info(JwjdActivty.this, "请填写第" + (i + 1) + "位被举报人的姓名").show();
                         return;

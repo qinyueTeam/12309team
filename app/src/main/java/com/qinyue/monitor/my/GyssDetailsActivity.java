@@ -175,7 +175,12 @@ public class GyssDetailsActivity extends BaseActivity {
                                 }
                             });
                         }
-                        timeTv.setText(yyDetailsBean.getPicCreateTime());
+                        if (yyDetailsBean.getPicCreateTime()!=null&&yyDetailsBean.getPicCreateTime().contains("T")){
+                            String[] ts = yyDetailsBean.getPicCreateTime().split("T");
+                            if (ts.length>1){
+                                timeTv.setText(ts[0]);
+                            }
+                        }
                         xsnameTv.setText(yyDetailsBean.getPlaintiffName());
                         idcardTv.setText(yyDetailsBean.getPlaintiffCertificateNumber());
                         dzTv.setText(yyDetailsBean.getPlaintiffAddress());

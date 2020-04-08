@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.RegexUtils;
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -360,6 +361,18 @@ public class UnderageAccusationActivity extends BaseActivity {
         switch (view.getId()){
             case R.id.btn_submit:{
                 if(!etName.getText().toString().trim().isEmpty()||!etXb.getText().toString().isEmpty()||!etZjlx.getText().toString().trim().isEmpty()||!etZjhm.getText().toString().isEmpty()||!etSzd.getText().toString().isEmpty()||!etBkgrName.getText().toString().isEmpty()||!etYwcngz.getText().toString().isEmpty()||!etBkgrZjlx.getText().toString().isEmpty()||!etBkgrZjhm.getText().toString().isEmpty()||!etBkgrRddb.getText().toString().isEmpty()||!etWbkgrName.getText().toString().isEmpty()||!etWdwszd.getText().toString().isEmpty()||!etAfd.getText().toString().isEmpty()||!etKgsxfssj.getText().toString().isEmpty()||!contentTv.getEditText().getText().toString().isEmpty()){
+                    if ("居民身份证".equals(etZjlx.getText().toString().trim())&&!RegexUtils.isIDCard18(etZjhm.getText().toString().trim())){
+                        XToast.info(this,"未成年人信息证件号码错误").show();
+                        break;
+                    }
+                    if ("居民身份证".equals(etBkgrZjlx.getText().toString().trim())&&!RegexUtils.isIDCard18(etBkgrZjhm.getText().toString().trim())){
+                        XToast.info(this,"控告人信息证件号码错误").show();
+                        break;
+                    }
+                    if (!RegexUtils.isMobileSimple(etPhone.getText().toString().trim())){
+                        XToast.info(this,"电话号码错误").show();
+                        break;
+                    }
                     miniLoadingDialog.show();
                     if (selectPhoto.size()>0) {
                         fileIds.clear();
