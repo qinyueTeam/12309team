@@ -1,14 +1,17 @@
 package com.qinyue.monitor.home;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.RemoteException;
@@ -41,7 +44,11 @@ import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTit
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.CommonPagerTitleView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends BaseActivity {
     @BindView(R.id.magic_indicator)
@@ -180,28 +187,61 @@ public class MainActivity extends BaseActivity {
         });
         magicIndicator.setNavigator(commonNavigator);
         mFragmentContainerHelper.attachMagicIndicator(magicIndicator);
-        XXPermissions.with(this)
-                // 可设置被拒绝后继续申请，直到用户授权或者永久拒绝
-                //.constantRequest()
-                // 支持请求6.0悬浮窗权限8.0请求安装权限
-                //.permission(Permission.SYSTEM_ALERT_WINDOW, Permission.REQUEST_INSTALL_PACKAGES)
-                // 不指定权限则自动获取清单中的危险权限
-                .permission(Permission.RECORD_AUDIO)
-                .request(new OnPermission() {
+//        XXPermissions.with(this)
+//                // 可设置被拒绝后继续申请，直到用户授权或者永久拒绝
+//                //.constantRequest()
+//                // 支持请求6.0悬浮窗权限8.0请求安装权限
+//                //.permission(Permission.SYSTEM_ALERT_WINDOW, Permission.REQUEST_INSTALL_PACKAGES)
+//                // 不指定权限则自动获取清单中的危险权限
+//                .permission(Permission.RECORD_AUDIO)
+//                .request(new OnPermission() {
+//
+//                    @Override
+//                    public void hasPermission(List<String> granted, boolean all) {
+//
+//                    }
+//
+//                    @Override
+//                    public void noPermission(List<String> denied, boolean quick) {
+//                        XToast.error(MainActivity.this, "我们需要使用麦克风权限").show();
+//                    }
+//                });
+        checkPermissions();
+    }
+    private void checkPermissions() {
 
-                    @Override
-                    public void hasPermission(List<String> granted, boolean all) {
+        List<String> permissions = new LinkedList<>();
 
-                    }
+        addPermission(permissions, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        addPermission(permissions, Manifest.permission.RECORD_AUDIO);
+        addPermission(permissions, Manifest.permission.INTERNET);
+        addPermission(permissions, Manifest.permission.READ_PHONE_STATE);
 
-                    @Override
-                    public void noPermission(List<String> denied, boolean quick) {
-                        XToast.error(MainActivity.this, "我们需要使用麦克风权限").show();
-                    }
-                });
+        if (!permissions.isEmpty()) {
+            ActivityCompat.requestPermissions(this, permissions.toArray(new String[permissions.size()]),
+                    MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE);
+        }
 
     }
+    private void addPermission(List<String> permissionList, String permission) {
 
+        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
+            permissionList.add(permission);
+        }
+    }
+
+    LinkedHashMap<String, String> resMap = new LinkedHashMap<>();
+    private String buildMessage(Map<String, String> msg) {
+
+        StringBuffer stringBuffer = new StringBuffer();
+        Iterator<Map.Entry<String, String>> iter = msg.entrySet().iterator();
+        while (iter.hasNext()) {
+            String value = iter.next().getValue();
+            stringBuffer.append(value+"\r\n");
+        }
+        return stringBuffer.toString();
+    }
+    int MY_PERMISSIONS_REQUEST_READ_EXTERNAL_STORAGE = 1;
     private void switchPages(int index) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

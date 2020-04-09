@@ -27,4 +27,8 @@ public class TagConstant {
     public static  String IMAGE = "https://www.ricitech.com/microImg/camra_background.png";
     //法律咨询的url
     public static  String IMAGE1 = "https://www.ricitech.com/microImg/idcardimage.png";
+    public static final int YAPPID = 1300430698;
+    public static final String YSECRETKEY = "lO7gW1HLE2mJqE9uc9Eg5GG2qRsrkcJd";
+    public static final String YSECRETID = "AKIDylKlxwvCampj3ArsSCk4A4jEbkz2g8J4";
+    public static final int YPROJECTID = 0;
 }

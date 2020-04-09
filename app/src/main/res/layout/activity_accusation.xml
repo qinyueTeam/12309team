@@ -1120,6 +1120,7 @@
                     android:background="@color/xui_btn_gray_normal_color" />
 
                 <RelativeLayout
+                    android:id="@+id/el_content"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 

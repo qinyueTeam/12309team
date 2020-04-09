@@ -1,9 +1,17 @@
 package com.qinyue.monitor.work;
 
+import android.animation.Animator;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.util.SparseArray;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -15,6 +23,7 @@ import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
+import com.luck.picture.lib.tools.AnimUtils;
 import com.qinyue.monitor.R;
 import com.qinyue.monitor.base.BaseActivity;
 import com.qinyue.monitor.base.BaseArrayDataBean2;
@@ -33,6 +42,23 @@ import com.qinyue.monitor.util.UserUtils;
 import com.qinyue.monitor.view.ChooseAfdActivity;
 import com.qinyue.monitor.view.ChooseSfActivity;
 import com.qinyue.monitor.view.SelectSectionParentEntity;
+import com.tencent.aai.AAIClient;
+import com.tencent.aai.audio.data.AudioRecordDataSource;
+import com.tencent.aai.auth.AbsCredentialProvider;
+import com.tencent.aai.auth.LocalCredentialProvider;
+import com.tencent.aai.config.ClientConfiguration;
+import com.tencent.aai.exception.ClientException;
+import com.tencent.aai.exception.ServerException;
+import com.tencent.aai.listener.AudioRecognizeResultListener;
+import com.tencent.aai.listener.AudioRecognizeStateListener;
+import com.tencent.aai.listener.AudioRecognizeTimeoutListener;
+import com.tencent.aai.log.AAILogger;
+import com.tencent.aai.model.AudioRecognizeRequest;
+import com.tencent.aai.model.AudioRecognizeResult;
+import com.tencent.aai.model.type.AudioRecognizeConfiguration;
+import com.tencent.aai.model.type.AudioRecognizeTemplate;
+import com.tencent.aai.model.type.EngineModelType;
+import com.xuexiang.xui.utils.ViewUtils;
 import com.xuexiang.xui.widget.dialog.bottomsheet.BottomSheet;
 import com.xuexiang.xui.widget.edittext.MultiLineEditText;
 import com.xuexiang.xui.widget.picker.widget.OptionsPickerView;
@@ -40,15 +66,23 @@ import com.xuexiang.xui.widget.picker.widget.builder.OptionsPickerBuilder;
 import com.xuexiang.xui.widget.picker.widget.listener.OnOptionsSelectListener;
 import com.xuexiang.xui.widget.toast.XToast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
+import butterknife.OnTouch;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import rxhttp.wrapper.param.RxHttp;
@@ -131,6 +165,11 @@ public class AccusationActivity extends BaseActivity {
     private int clIndex = 0;
     SparseArray<LocalMedia> selectPhoto = new SparseArray<>();
     SparseArray<UpDataFileBean> fileIds = new SparseArray<>();
+
+    AAIClient aaiClient;
+
+    AbsCredentialProvider credentialProvider;
+
     @Override
     public String initTitleText() {
         return "控告";
@@ -138,11 +177,19 @@ public class AccusationActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (UserUtils.getSex().equals("男")){
+        if (UserUtils.getSex().equals("男")) {
             checkIndexSex[0] = 0;
-        }else {
+        } else {
             checkIndexSex[0] = 1;
         }
+        // 签名鉴权类，sdk中给出了一个本地的鉴权类，但由于需要用户提供secretKey，这可能会导致一些安全上的问题，
+        // 因此，请用户自行实现CredentialProvider接口
+        credentialProvider = new LocalCredentialProvider(TagConstant.YSECRETKEY);
+
+        // 用户配置
+        ClientConfiguration.setServerProtocolHttps(false); // 是否启用https，默认启用
+        ClientConfiguration.setMaxAudioRecognizeConcurrentNumber(2); // 语音识别的请求的最大并发数
+        ClientConfiguration.setMaxRecognizeSliceConcurrentNumber(10); // 单个请求的分片最大并发数
     }
 
     @Override
@@ -164,6 +211,209 @@ public class AccusationActivity extends BaseActivity {
     protected void init() {
 
     }
+
+
+    // 识别结果回调监听器
+    final AudioRecognizeResultListener audioRecognizeResultlistener = new AudioRecognizeResultListener() {
+
+        boolean dontHaveResult = true;
+
+        /**
+         * 返回分片的识别结果
+         * @param request 相应的请求
+         * @param result 识别结果
+         * @param seq 该分片所在语音流的序号 (0, 1, 2...)
+         */
+        @Override
+        public void onSliceSuccess(AudioRecognizeRequest request, AudioRecognizeResult result, int seq) {
+
+            if (dontHaveResult && !TextUtils.isEmpty(result.getText())) {
+                dontHaveResult = false;
+            }
+            if (audioEdit != null && !result.getText().isEmpty()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        audioEdit.setText(result.getText().replace("。", ""));
+                        audioEdit = null;
+                    }
+                });
+            } else if (multiLineEditText != null && !result.getText().isEmpty()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        multiLineEditText.setContentText(result.getText().replace("。", ""));
+                        multiLineEditText = null;
+                    }
+                });
+            }
+
+        }
+
+        /**
+         * 返回语音流的识别结果
+         * @param request 相应的请求
+         * @param result 识别结果
+         * @param seq 该语音流的序号 (1, 2, 3...)
+         */
+        @Override
+        public void onSegmentSuccess(AudioRecognizeRequest request, AudioRecognizeResult result, int seq) {
+            dontHaveResult = true;
+        }
+
+        /**
+         * 识别结束回调，返回所有的识别结果
+         * @param request 相应的请求
+         * @param result 识别结果
+         */
+        @Override
+        public void onSuccess(AudioRecognizeRequest request, final String result) {
+            Log.i("AUDIO", "返回所有的识别结果:" + result);
+            if (audioEdit != null && !result.isEmpty()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        audioEdit.setText(result.replace("。", ""));
+                        audioEdit = null;
+                    }
+                });
+            } else if (multiLineEditText != null && !result.isEmpty()) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        multiLineEditText.setContentText(result.replace("。", ""));
+                        multiLineEditText = null;
+                    }
+                });
+            }
+
+        }
+
+        /**
+         * 识别失败
+         * @param request 相应的请求
+         * @param clientException 客户端异常
+         * @param serverException 服务端异常
+         */
+        @Override
+        public void onFailure(AudioRecognizeRequest request, final ClientException clientException, final ServerException serverException) {
+            Log.i("AUDIO", "识别失败");
+        }
+    };
+
+
+    /**
+     * 识别状态监听器
+     */
+    final AudioRecognizeStateListener audioRecognizeStateListener = new AudioRecognizeStateListener() {
+
+        /**
+         * 开始录音
+         * @param request
+         */
+        @Override
+        public void onStartRecord(AudioRecognizeRequest request) {
+            currentRequestId = request.getRequestId();
+            Log.i("AUDIO", "真正开始录音");
+        }
+
+        /**
+         * 结束录音
+         * @param request
+         */
+        @Override
+        public void onStopRecord(AudioRecognizeRequest request) {
+            Log.i("AUDIO", "真正结束录音:" + request.toString());
+        }
+
+        /**
+         * 第seq个语音流开始识别
+         * @param request
+         * @param seq
+         */
+        @Override
+        public void onVoiceFlowStartRecognize(AudioRecognizeRequest request, int seq) {
+        }
+
+        /**
+         * 第seq个语音流结束识别
+         * @param request
+         * @param seq
+         */
+        @Override
+        public void onVoiceFlowFinishRecognize(AudioRecognizeRequest request, int seq) {
+
+            Date date = new Date();
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            String time = format.format(date);
+            String message = String.format("voice flow order = %d, recognize finish in %s", seq, time);
+            Log.i("AUDIO", "第seq个语音流结束识别message:" + message);
+        }
+
+        /**
+         * 第seq个语音流开始
+         * @param request
+         * @param seq
+         */
+        @Override
+        public void onVoiceFlowStart(AudioRecognizeRequest request, int seq) {
+//
+            Date date = new Date();
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            String time = format.format(date);
+            String message = String.format("voice flow order = %d, start in %s", seq, time);
+            Log.i("AUDIO", "第seq个语音流开始message:" + message);
+        }
+
+        /**
+         * 第seq个语音流结束
+         * @param request
+         * @param seq
+         */
+        @Override
+        public void onVoiceFlowFinish(AudioRecognizeRequest request, int seq) {
+
+            Date date = new Date();
+            DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
+            String time = format.format(date);
+            String message = String.format("voice flow order = %d, stop in %s", seq, time);
+            Log.i("AUDIO", "第seq个语音流结束message:" + message);
+        }
+
+        /**
+         * 语音音量回调
+         * @param request
+         * @param volume
+         */
+        @Override
+        public void onVoiceVolume(AudioRecognizeRequest request, final int volume) {
+        }
+
+    };
+    /**
+     * 识别超时监听器
+     */
+    final AudioRecognizeTimeoutListener audioRecognizeTimeoutListener = new AudioRecognizeTimeoutListener() {
+
+        /**
+         * 检测第一个语音流超时
+         * @param request
+         */
+        @Override
+        public void onFirstVoiceFlowTimeout(AudioRecognizeRequest request) {
+            Log.i("AUDIO", "检测第一个语音流超时");
+        }
+
+        /**
+         * 检测下一个语音流超时
+         * @param request
+         */
+        @Override
+        public void onNextVoiceFlowTimeout(AudioRecognizeRequest request) {
+            Log.i("AUDIO", "检测下一个语音流超时");
+        }
+    };
+
     public void getMzDataForcChild() {
         miniLoadingDialog.show();
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
@@ -215,6 +465,7 @@ public class AccusationActivity extends BaseActivity {
                     XToast.error(AccusationActivity.this, throwable.getMessage()).show();
                 });
     }
+
     public void getBzjDataForcChild() {
         miniLoadingDialog.show();
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
@@ -240,6 +491,7 @@ public class AccusationActivity extends BaseActivity {
                     XToast.error(AccusationActivity.this, throwable.getMessage()).show();
                 });
     }
+
     public void getRddbDataForcChild() {
         miniLoadingDialog.show();
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
@@ -265,7 +517,8 @@ public class AccusationActivity extends BaseActivity {
                     XToast.error(AccusationActivity.this, throwable.getMessage()).show();
                 });
     }
-    public void getGjDataForcChild(int pos,TextView tv) {
+
+    public void getGjDataForcChild(int pos, TextView tv) {
         miniLoadingDialog.show();
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.getTypeCode)
                 .add("appId", TagConstant.APPID)
@@ -281,7 +534,7 @@ public class AccusationActivity extends BaseActivity {
                         for (int i = 0; i < gjBeans.size(); i++) {
                             gjStrBeans.add(gjBeans.get(i).getName());
                         }
-                        showGjPickerView(pos,tv);
+                        showGjPickerView(pos, tv);
                     } else {
                         XToast.error(AccusationActivity.this, s.getMsg()).show();
                     }
@@ -291,15 +544,170 @@ public class AccusationActivity extends BaseActivity {
                 });
     }
 
-    @OnClick({R.id.btn_cancel,R.id.btn_submit,R.id.img_qtcl,R.id.img_zjcl,R.id.img_kgcl,R.id.rl_xb,R.id.rl_zjlx,R.id.rl_mz,R.id.rl_gj,R.id.rl_bkgr_xb,R.id.rl_bkgr_gj,R.id.rl_bkgr_zj,R.id.rl_bkgr_sf,R.id.rl_bkgr_rddb,R.id.rl_bkgr_zxwy,R.id.rl_bkgr_afd})
+    int currentRequestId = 0;
+    AudioRecognizeRequest.Builder builder = new AudioRecognizeRequest.Builder();
+    AudioRecognizeRequest audioRecognizeRequest;
+    AudioRecognizeConfiguration audioRecognizeConfiguration;
+    EditText audioEdit;
+    MultiLineEditText multiLineEditText;
+    AlphaAnimation alphaAnimation1;
+    private boolean isLongClickModule = false;
+    private boolean isAudio = false;
+    float startX = 0;
+    float startY = 0;
+    Timer timer = null;
+
+    @OnTouch({R.id.el_content, R.id.rl_name, R.id.rl_zjhm, R.id.rl_phone, R.id.rl_email, R.id.rl_gzdw, R.id.rl_jsd, R.id.rl_bkgr_name, R.id.rl_bkgr_gzdwqc, R.id.rl_bkgr_dwszd, R.id.rl_bkgr_zw})
+    public boolean onTouch(View v, MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN: //手指按下
+
+                startX = event.getX();
+                startY = event.getY();
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        isLongClickModule = true;
+                    }
+                }, 1000);
+                break;
+            case MotionEvent.ACTION_MOVE: //手指移动（从手指按下到抬起 move多次执行）
+                double deltaX = Math.sqrt((event.getX() - startX) * (event.getX() - startX) + (event.getY() - startY) * (event.getY() - startY));
+                if (deltaX > 20 && timer != null) { // 移动大于20像素
+                    timer.cancel();
+                    timer = null;
+                }
+                if (isLongClickModule&&!isAudio) {
+                    isAudio=true;
+                    //添加你长按之后的方法
+                    audioEdit = null;
+                    multiLineEditText = null;
+                    if (v.getId() == R.id.rl_name) {
+                        audioEdit = nameEdit;
+                    } else if (v.getId() == R.id.rl_zjhm) {
+                        audioEdit = zjhmEdit;
+                    } else if (v.getId() == R.id.rl_phone) {
+                        audioEdit = phoneEdit;
+                    } else if (v.getId() == R.id.rl_email) {
+                        audioEdit = emailEdit;
+                    } else if (v.getId() == R.id.rl_gzdw) {
+                        audioEdit = gzdwEdit;
+                    } else if (v.getId() == R.id.rl_jsd) {
+                        audioEdit = jsdEdit;
+                    } else if (v.getId() == R.id.rl_bkgr_name) {
+                        audioEdit = bNameEdit;
+                    } else if (v.getId() == R.id.rl_bkgr_gzdwqc) {
+                        audioEdit = bGzdwEdit;
+                    } else if (v.getId() == R.id.rl_bkgr_dwszd) {
+                        audioEdit = bDwdzEdit;
+                    } else if (v.getId() == R.id.rl_bkgr_zw) {
+                        audioEdit = bZwEdit;
+                    } else if (v.getId() == R.id.el_content) {
+                        multiLineEditText = contentTv;
+                    }
+                    startAudio(v);
+                    timer = null;
+                }
+
+                break;
+            case MotionEvent.ACTION_UP: //手指抬起
+                isLongClickModule = false;
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+                stopAudio(v);
+                break;
+            default:
+                isLongClickModule = false;
+                if (timer != null) {
+                    timer.cancel();
+                    timer = null;
+                }
+
+        }
+        return true;
+    }
+
+    private void startAudio(View view) {
+        if (alphaAnimation1 == null) {
+            alphaAnimation1 = new AlphaAnimation(0.2f, 1.0f);
+            alphaAnimation1.setDuration(2000);
+            alphaAnimation1.setInterpolator(new LinearInterpolator());
+            alphaAnimation1.setRepeatCount(Animation.INFINITE);
+            alphaAnimation1.setRepeatMode(Animation.RESTART);
+        }
+        view.startAnimation(alphaAnimation1);
+        //File file = new File(Environment.getExternalStorageDirectory()+"/tencent_aai____/audio", "1.pcm");
+        // 初始化识别请求
+        if (audioRecognizeRequest == null) {
+            audioRecognizeRequest = builder
+                    .pcmAudioDataSource(new AudioRecordDataSource()) // 设置数据源
+                    //.templateName(templateName) // 设置模板
+                    .template(new AudioRecognizeTemplate(EngineModelType.EngineModelType16K, 0, 0)) // 设置自定义模板
+                    .build();
+
+            // 自定义识别配置
+            audioRecognizeConfiguration = new AudioRecognizeConfiguration.Builder()
+                    .enableAudioStartTimeout(true) // 是否使能起点超时停止录音
+                    .enableAudioEndTimeout(true) // 是否使能终点超时停止录音
+                    .enableSilentDetect(true) // 是否使能静音检测，true表示不检查静音部分
+                    .minAudioFlowSilenceTime(1000) // 语音流识别时的间隔时间
+                    .maxAudioFlowSilenceTime(10000) // 语音终点超时时间
+                    .maxAudioStartSilenceTime(10000) // 语音起点超时时间
+                    .minVolumeCallbackTime(80) // 音量回调时间
+                    .sensitive(2)
+                    .build();
+        }
+        if (aaiClient == null) {
+            try {
+                aaiClient = new AAIClient(AccusationActivity.this, TagConstant.YAPPID, TagConstant.YPROJECTID, TagConstant.YSECRETID, credentialProvider);
+            } catch (ClientException e) {
+                e.printStackTrace();
+            }
+        }
+        if (aaiClient.isAudioRecognizeIdle())
+        //currentRequestId = audioRecognizeRequest.getRequestId();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Log.i("AUDIO", "开始录音");
+                aaiClient.startAudioRecognize(audioRecognizeRequest, audioRecognizeResultlistener,
+                        audioRecognizeStateListener, audioRecognizeTimeoutListener,
+                        audioRecognizeConfiguration);
+
+            }
+        }).start();
+    }
+
+    private void stopAudio(View view) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                isAudio=false;
+                boolean taskExist = false;
+                if (aaiClient != null) {
+                    taskExist = aaiClient.stopAudioRecognize(currentRequestId);
+                    aaiClient.cancelAudioRecognize(currentRequestId);
+                }
+                if (!taskExist) {
+                    Log.i("AUDIO", "停止录音");
+                }
+            }
+        }).start();
+        view.clearAnimation();
+    }
+
+    @OnClick({R.id.btn_cancel, R.id.btn_submit, R.id.img_qtcl, R.id.img_zjcl, R.id.img_kgcl, R.id.rl_xb, R.id.rl_zjlx, R.id.rl_mz, R.id.rl_gj, R.id.rl_bkgr_xb, R.id.rl_bkgr_gj, R.id.rl_bkgr_zj, R.id.rl_bkgr_sf, R.id.rl_bkgr_rddb, R.id.rl_bkgr_zxwy, R.id.rl_bkgr_afd})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.rl_xb: {//性别
-                showSimpleBottomSheetList(0,xbTv);
+                showSimpleBottomSheetList(0, xbTv);
             }
             break;
             case R.id.rl_zjlx: {//证件类型
-                if (zjBeans== null) {
+                if (zjBeans == null) {
                     getZjDataForcChild();
                 } else {
                     showZjPickerView();
@@ -316,26 +724,26 @@ public class AccusationActivity extends BaseActivity {
             break;
             case R.id.rl_gj: {//国籍
                 if (gjBeans == null) {
-                    getGjDataForcChild(0,gjTv);
+                    getGjDataForcChild(0, gjTv);
                 } else {
-                    showGjPickerView(0,gjTv);
+                    showGjPickerView(0, gjTv);
                 }
             }
             break;
             case R.id.rl_bkgr_xb: {//被控告人性别
-                showSimpleBottomSheetList(1,bXbTv);
+                showSimpleBottomSheetList(1, bXbTv);
             }
             break;
             case R.id.rl_bkgr_gj: {//被控告人国籍
                 if (gjBeans == null) {
-                    getGjDataForcChild(1,bGjTv);
+                    getGjDataForcChild(1, bGjTv);
                 } else {
-                    showGjPickerView(1,bGjTv);
+                    showGjPickerView(1, bGjTv);
                 }
             }
             break;
             case R.id.rl_bkgr_zj: {//被控告人职级
-                if (bZjBeans== null) {
+                if (bZjBeans == null) {
                     getBzjDataForcChild();
                 } else {
                     showBzjPickerView();
@@ -382,59 +790,59 @@ public class AccusationActivity extends BaseActivity {
             }
             break;
             case R.id.btn_submit: {//提交
-                if (nameEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入控告人姓名或单位名称").show();
+                if (nameEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入控告人姓名或单位名称").show();
                     break;
                 }
-                if (zjlxTv.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请选择证件类型").show();
+                if (zjlxTv.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请选择证件类型").show();
                     break;
                 }
-                if (zjhmEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入证件号码").show();
+                if (zjhmEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入证件号码").show();
                     break;
                 }
-                if ("居民身份证".equals(zjlxTv.getText().toString().trim())&&!RegexUtils.isIDCard18(zjhmEdit.getText().toString().trim())){
-                    XToast.info(AccusationActivity.this,"证件号码错误").show();
+                if ("居民身份证".equals(zjlxTv.getText().toString().trim()) && !RegexUtils.isIDCard18(zjhmEdit.getText().toString().trim())) {
+                    XToast.info(AccusationActivity.this, "证件号码错误").show();
                     break;
                 }
-                if (phoneEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入电话号码").show();
+                if (phoneEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入电话号码").show();
                     break;
                 }
-                if (!RegexUtils.isMobileSimple(phoneEdit.getText().toString().trim())){
-                    XToast.info(AccusationActivity.this,"电话号码错误").show();
+                if (!RegexUtils.isMobileSimple(phoneEdit.getText().toString().trim())) {
+                    XToast.info(AccusationActivity.this, "电话号码错误").show();
                     break;
                 }
-                if (!emailEdit.getText().toString().trim().isEmpty()&&!RegexUtils.isEmail(emailEdit.getText().toString().trim())){
-                    XToast.info(AccusationActivity.this,"电子邮箱格式错误").show();
+                if (!emailEdit.getText().toString().trim().isEmpty() && !RegexUtils.isEmail(emailEdit.getText().toString().trim())) {
+                    XToast.info(AccusationActivity.this, "电子邮箱格式错误").show();
                     break;
                 }
-                if (jsdEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入您的居所地").show();
+                if (jsdEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入您的居所地").show();
                     break;
                 }
-                if (bNameEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入被控告人姓名").show();
+                if (bNameEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入被控告人姓名").show();
                     break;
                 }
-                if (bGzdwEdit.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入被控告人工作单位全称").show();
+                if (bGzdwEdit.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入被控告人工作单位全称").show();
                     break;
                 }
-                if (bAfdTv.getText().toString().trim().isEmpty()){
-                    XToast.info(AccusationActivity.this,"请选择案发地").show();
+                if (bAfdTv.getText().toString().trim().isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请选择案发地").show();
                     break;
                 }
-                if (contentTv.isEmpty()){
-                    XToast.info(AccusationActivity.this,"请输入内容").show();
+                if (contentTv.isEmpty()) {
+                    XToast.info(AccusationActivity.this, "请输入内容").show();
                     break;
                 }
                 miniLoadingDialog.show();
-                if (selectPhoto.size()>0){
+                if (selectPhoto.size() > 0) {
                     fileIds.clear();
                     upLoadFiles(0);
-                }else {
+                } else {
                     submit();
                 }
             }
@@ -445,6 +853,7 @@ public class AccusationActivity extends BaseActivity {
             break;
         }
     }
+
     /**
      * 民族
      */
@@ -463,6 +872,7 @@ public class AccusationActivity extends BaseActivity {
         pvOptions.setPicker(mzStrBeans);
         pvOptions.show();
     }
+
     /**
      * 证件类型
      */
@@ -481,6 +891,7 @@ public class AccusationActivity extends BaseActivity {
         pvOptions.setPicker(zjStrBeans);
         pvOptions.show();
     }
+
     /**
      * 职级
      */
@@ -518,10 +929,11 @@ public class AccusationActivity extends BaseActivity {
         pvOptions.setPicker(rddbStrBeans);
         pvOptions.show();
     }
+
     /**
      * 国籍
      */
-    private void showGjPickerView(int pos,TextView tv) {
+    private void showGjPickerView(int pos, TextView tv) {
         OptionsPickerView pvOptions = new OptionsPickerBuilder(this, new OnOptionsSelectListener() {
             @Override
             public boolean onOptionsSelect(View v, int options1, int options2, int options3) {
@@ -536,8 +948,9 @@ public class AccusationActivity extends BaseActivity {
         pvOptions.setPicker(gjStrBeans);
         pvOptions.show();
     }
+
     private void showSimpleBottomSheetList(int pos, TextView textView) {
-        if (pos==0){
+        if (pos == 0) {
             new BottomSheet.BottomListSheetBuilder(this)
                     .setTitle("请选择性别")
                     .addItem("男")
@@ -553,7 +966,7 @@ public class AccusationActivity extends BaseActivity {
                         }
                     })
                     .build().show();
-        }else {
+        } else {
             new BottomSheet.BottomListSheetBuilder(this)
                     .setTitle("请选择性别")
                     .addItem("未知")
@@ -596,6 +1009,7 @@ public class AccusationActivity extends BaseActivity {
                 })
                 .build().show();
     }
+
     @Override
     protected void onClickTitleLeft() {
         super.onClickTitleLeft();
@@ -610,34 +1024,38 @@ public class AccusationActivity extends BaseActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode==102&&resultCode==124){//身份
+        if (requestCode == 102 && resultCode == 124) {//身份
             sfBean = (SelectSectionParentEntity) data.getSerializableExtra("data");
             bSfTv.setText(sfBean.getName());
         }
-        if (requestCode==101&&resultCode==123){//案发地
+        if (requestCode == 101 && resultCode == 123) {//案发地
             afdBean = (SelectSectionParentEntity) data.getSerializableExtra("data");
             bAfdTv.setText(afdBean.getName());
         }
-        if (requestCode == PictureConfig.CHOOSE_REQUEST||requestCode == PictureConfig.REQUEST_CAMERA) {
+        if (requestCode == PictureConfig.CHOOSE_REQUEST || requestCode == PictureConfig.REQUEST_CAMERA) {
             //相册返回
             // 图片选择结果回调
             List<LocalMedia> selectList = PictureSelector.obtainMultipleResult(data);
-            if (selectList!=null&&selectList.size()>0){
-                switch (clIndex){
-                    case 0:{//控告
+            if (selectList != null && selectList.size() > 0) {
+                switch (clIndex) {
+                    case 0: {//控告
                         Glide.with(AccusationActivity.this).load(selectList.get(0).getPath()).into(kgclImg);
-                    }break;
-                    case 1:{//证据
+                    }
+                    break;
+                    case 1: {//证据
                         Glide.with(AccusationActivity.this).load(selectList.get(0).getPath()).into(zjclImg);
-                    }break;
-                    case 2:{//其他
+                    }
+                    break;
+                    case 2: {//其他
                         Glide.with(AccusationActivity.this).load(selectList.get(0).getPath()).into(qtlImg);
-                    }break;
+                    }
+                    break;
                 }
-                selectPhoto.put(clIndex,selectList.get(0));
+                selectPhoto.put(clIndex, selectList.get(0));
             }
         }
     }
+
     private void showChoosePhotoDialog() {
         new BottomSheet.BottomListSheetBuilder(this)
                 .addItem("拍照")
@@ -666,19 +1084,21 @@ public class AccusationActivity extends BaseActivity {
                 })
                 .build().show();
     }
+
     private int retry = 0;
-    private void upLoadFiles(int index){
-        if (selectPhoto.get(index)==null&&index<2){
-            upLoadFiles(index+1);
+
+    private void upLoadFiles(int index) {
+        if (selectPhoto.get(index) == null && index < 2) {
+            upLoadFiles(index + 1);
             return;
         }
-        if (index>2){
+        if (index > 2) {
             return;
         }
-        Map<String,String> map = new HashMap<>();
-        map.put("fileName",selectPhoto.get(index).getFileName());
+        Map<String, String> map = new HashMap<>();
+        map.put("fileName", selectPhoto.get(index).getFileName());
         String fromBase64 = Base64Converter.encodeBase64File(selectPhoto.get(index).getPath());
-        map.put("data",fromBase64 );
+        map.put("data", fromBase64);
         String a = Base64Converter.AESEncode(TagConstant.AESKEY, JsonUtils.getInstance().gson.toJson(map));
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.fileUpload)
                 .add("appId", TagConstant.APPID)
@@ -687,73 +1107,73 @@ public class AccusationActivity extends BaseActivity {
                 .asObject(UpDataFileBean.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
-                    if (s.getResult()==200){
+                    if (s.getResult() == 200) {
                         retry = 0;
-                        fileIds.put(index,s);
+                        fileIds.put(index, s);
                         //下一个
-                        if (fileIds.size()<selectPhoto.size()){
-                            int sss = index+1;
+                        if (fileIds.size() < selectPhoto.size()) {
+                            int sss = index + 1;
                             upLoadFiles(sss);
-                        }else {
+                        } else {
                             submit();
                         }
-                    }else {
+                    } else {
                         //重试
-                        retry ++;
-                        if (retry==3){
+                        retry++;
+                        if (retry == 3) {
                             miniLoadingDialog.dismiss();
-                            XToast.error(AccusationActivity.this,"第"+(index+1)+"张图片上传失败,请检查").show();
-                        }else {
+                            XToast.error(AccusationActivity.this, "第" + (index + 1) + "张图片上传失败,请检查").show();
+                        } else {
                             upLoadFiles(index);
                         }
                     }
                 }, throwable -> {
-                    retry ++;
-                    if (retry==3){
+                    retry++;
+                    if (retry == 3) {
                         miniLoadingDialog.dismiss();
-                        XToast.error(AccusationActivity.this,"第"+(index+1)+"张图片上传失败,请检查").show();
-                    }else {
+                        XToast.error(AccusationActivity.this, "第" + (index + 1) + "张图片上传失败,请检查").show();
+                    } else {
                         upLoadFiles(index);
                     }
                 });
     }
 
     private void submit() {
-        Map<String,String> map = new HashMap<>();
-        map.put("source",TagConstant.SOURCE);
-        map.put("plaintiffName",nameEdit.getText().toString().trim());
-        map.put("plaintiffSex",xbTv.getText().toString().trim());
-        map.put("plaintiffCertificateType",zjIndex==-1?"":zjBeans.get(zjIndex).getCode());
-        map.put("plaintiffCertificateNumber",zjhmEdit.getText().toString().trim());
-        map.put("plaintiffNation",mzIndex==-1?"":mzBeans.get(mzIndex).getCode());
-        map.put("plaintiffNationality",checkIndexGj[0]==-1?"":gjBeans.get(checkIndexGj[0]).getCode());
-        map.put("plaintiffPhone",phoneEdit.getText().toString().trim());
-        map.put("plaintiffEmail",emailEdit.getText().toString().trim());
-        map.put("plaintiffUnit",gzdwEdit.getText().toString().trim());
-        map.put("plaintiffResidence",jsdEdit.getText().toString().trim());
+        Map<String, String> map = new HashMap<>();
+        map.put("source", TagConstant.SOURCE);
+        map.put("plaintiffName", nameEdit.getText().toString().trim());
+        map.put("plaintiffSex", xbTv.getText().toString().trim());
+        map.put("plaintiffCertificateType", zjIndex == -1 ? "" : zjBeans.get(zjIndex).getCode());
+        map.put("plaintiffCertificateNumber", zjhmEdit.getText().toString().trim());
+        map.put("plaintiffNation", mzIndex == -1 ? "" : mzBeans.get(mzIndex).getCode());
+        map.put("plaintiffNationality", checkIndexGj[0] == -1 ? "" : gjBeans.get(checkIndexGj[0]).getCode());
+        map.put("plaintiffPhone", phoneEdit.getText().toString().trim());
+        map.put("plaintiffEmail", emailEdit.getText().toString().trim());
+        map.put("plaintiffUnit", gzdwEdit.getText().toString().trim());
+        map.put("plaintiffResidence", jsdEdit.getText().toString().trim());
 
-        map.put("defendantName",bNameEdit.getText().toString().trim());
-        map.put("defendantSex",bXbTv.getText().toString().trim());
-        map.put("defendantNationality",checkIndexGj[1]==-1?"":gjBeans.get(checkIndexGj[1]).getCode());
-        map.put("defendantUintFullName",bGzdwEdit.getText().toString().trim());
-        map.put("defendantUnitLocation",bDwdzEdit.getText().toString().trim());
-        map.put("defendantDuty",bZwEdit.getText().toString().trim());
-        map.put("defendantRank",bZjIndex==-1?"":bZjBeans.get(bZjIndex).getCode());
-        map.put("defendantIdentity",sfBean==null?"":sfBean.getCode());
-        map.put("defendantNPC",rddbIndex==-1?"":rddbBeans.get(rddbIndex).getCode());
-        map.put("defendantCPPCC",bZxwyTv.getText().toString().trim());
-        map.put("organizationCode",TagConstant.CODE);
-        map.put("venueCode",afdBean==null?"":afdBean.getCode());
-        map.put("content",contentTv.getContentText());
-        map.put("attachmentFile1",fileIds.get(0)==null?"":fileIds.get(0).getFileId());
-        map.put("attachmentFile2",fileIds.get(1)==null?"":fileIds.get(1).getFileId());
-        map.put("attachmentFile3",fileIds.get(2)==null?"":fileIds.get(2).getFileId());
-        map.put("userId",UserUtils.getId());
-        map.put("userKeyId",UserUtils.getKeyId());
-        map.put("username",UserUtils.getUserName());
-        map.put("userRealName",UserUtils.getRealName());
+        map.put("defendantName", bNameEdit.getText().toString().trim());
+        map.put("defendantSex", bXbTv.getText().toString().trim());
+        map.put("defendantNationality", checkIndexGj[1] == -1 ? "" : gjBeans.get(checkIndexGj[1]).getCode());
+        map.put("defendantUintFullName", bGzdwEdit.getText().toString().trim());
+        map.put("defendantUnitLocation", bDwdzEdit.getText().toString().trim());
+        map.put("defendantDuty", bZwEdit.getText().toString().trim());
+        map.put("defendantRank", bZjIndex == -1 ? "" : bZjBeans.get(bZjIndex).getCode());
+        map.put("defendantIdentity", sfBean == null ? "" : sfBean.getCode());
+        map.put("defendantNPC", rddbIndex == -1 ? "" : rddbBeans.get(rddbIndex).getCode());
+        map.put("defendantCPPCC", bZxwyTv.getText().toString().trim());
+        map.put("organizationCode", TagConstant.CODE);
+        map.put("venueCode", afdBean == null ? "" : afdBean.getCode());
+        map.put("content", contentTv.getContentText());
+        map.put("attachmentFile1", fileIds.get(0) == null ? "" : fileIds.get(0).getFileId());
+        map.put("attachmentFile2", fileIds.get(1) == null ? "" : fileIds.get(1).getFileId());
+        map.put("attachmentFile3", fileIds.get(2) == null ? "" : fileIds.get(2).getFileId());
+        map.put("userId", UserUtils.getId());
+        map.put("userKeyId", UserUtils.getKeyId());
+        map.put("username", UserUtils.getUserName());
+        map.put("userRealName", UserUtils.getRealName());
         String ss = JsonUtils.getInstance().gson.toJson(map);
-        String aes = Base64Converter.AESEncode(TagConstant.AESKEY,ss);
+        String aes = Base64Converter.AESEncode(TagConstant.AESKEY, ss);
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL + NetConstant.accuse)
                 .add("appId", TagConstant.APPID)
                 .add("code", TagConstant.CODE)
@@ -762,16 +1182,24 @@ public class AccusationActivity extends BaseActivity {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {
                     miniLoadingDialog.dismiss();
-                    if (s.getResult()==200){
-                        XToast.success(AccusationActivity.this,s.getMessage()).show();
+                    if (s.getResult() == 200) {
+                        XToast.success(AccusationActivity.this, s.getMessage()).show();
                         finish();
-                    }else {
-                        XToast.error(AccusationActivity.this,s.getMessage()).show();
+                    } else {
+                        XToast.error(AccusationActivity.this, s.getMessage()).show();
                     }
                 }, throwable -> {
                     miniLoadingDialog.dismiss();
-                    XToast.error(AccusationActivity.this,throwable.getMessage()).show();
+                    XToast.error(AccusationActivity.this, throwable.getMessage()).show();
                 });
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (aaiClient != null) {
+            aaiClient.release();
+        }
     }
 }
