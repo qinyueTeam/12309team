@@ -11,6 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.blankj.utilcode.util.RegexUtils;
+import com.blankj.utilcode.util.TimeUtils;
 import com.bumptech.glide.Glide;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
@@ -43,7 +44,9 @@ import com.xuexiang.xui.widget.picker.widget.listener.OnTimeSelectListener;
 import com.xuexiang.xui.widget.toast.XToast;
 import com.xuexiang.xutil.data.DateUtils;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -718,6 +721,8 @@ public class UnderageAccusationActivity extends BaseActivity {
      * 日期选择
      */
     private void showWcnDatePicker() {
+        Calendar instance = Calendar.getInstance();
+        instance.set(1900,0,1);
         if (wDatePicker == null) {
             wDatePicker = new TimePickerBuilder(this, new OnTimeSelectListener() {
                 @Override
@@ -733,6 +738,8 @@ public class UnderageAccusationActivity extends BaseActivity {
                         }
                     })
                     .setTitleText("日期选择")
+                    .setDate(Calendar.getInstance())
+                    .setRangDate(instance,Calendar.getInstance())
                     .build();
         }
         wDatePicker.show();

@@ -194,6 +194,10 @@ public class StateCompensationActivity extends BaseActivity {
                     XToast.info(StateCompensationActivity.this,"电话号码错误").show();
                     break;
                 }
+                if (!emailEdit.getText().toString().trim().isEmpty()&&!RegexUtils.isEmail(emailEdit.getText().toString().trim())){
+                    XToast.info(this,"电子邮箱格式错误").show();
+                    break;
+                }
                 if (afdTv.getText().toString().trim().isEmpty()) {
                     XToast.info(StateCompensationActivity.this, "请选择案发地").show();
                     break;

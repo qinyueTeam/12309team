@@ -34,6 +34,7 @@ import com.xuexiang.xui.widget.toast.XToast;
 import com.xuexiang.xutil.data.DateUtils;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -199,6 +200,10 @@ public class ScheduleVideoActivity extends BaseActivity {
                     }
                     if (!RegexUtils.isMobileSimple(etPhone.getText().toString().trim())){
                         XToast.info(this,"电话号码错误").show();
+                        break;
+                    }
+                    if (!etEmail.getText().toString().trim().isEmpty()&&!RegexUtils.isEmail(etEmail.getText().toString().trim())){
+                        XToast.info(this,"电子邮箱格式错误").show();
                         break;
                     }
                     submit();
@@ -465,6 +470,8 @@ public class ScheduleVideoActivity extends BaseActivity {
      * 日期选择
      */
     private void showDatePicker() {
+        Calendar instance = Calendar.getInstance();
+        instance.set(2050,11,31);
         if (mDatePicker == null) {
             mDatePicker = new TimePickerBuilder(this, new OnTimeSelectListener() {
                 @Override
@@ -479,6 +486,8 @@ public class ScheduleVideoActivity extends BaseActivity {
                             Log.i("pvTime", "onTimeSelectChanged");
                         }
                     })
+                    .setDate(Calendar.getInstance())
+                    .setRangDate(Calendar.getInstance(),instance)
                     .setTitleText("日期选择")
                     .build();
         }

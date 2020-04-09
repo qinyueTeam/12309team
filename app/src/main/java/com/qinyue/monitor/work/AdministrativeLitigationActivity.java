@@ -254,6 +254,10 @@ public class AdministrativeLitigationActivity extends BaseActivity {
                     XToast.info(AdministrativeLitigationActivity.this,"电话号码错误").show();
                     break;
                 }
+                if (!emailEdit.getText().toString().trim().isEmpty()&&!RegexUtils.isEmail(emailEdit.getText().toString().trim())){
+                    XToast.info(this,"电子邮箱格式错误").show();
+                    break;
+                }
                 if (bNameEdit.getText().toString().trim().isEmpty()){
                     XToast.info(AdministrativeLitigationActivity.this,"请输入被申诉人姓名").show();
                     break;

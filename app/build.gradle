@@ -7,8 +7,8 @@ android {
         applicationId "com.qinyue.monitor"
         minSdkVersion 19
         targetSdkVersion 29
-        versionCode 6
-        versionName "1.0.0.5"
+        versionCode 7
+        versionName "1.0.0.6"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
@@ -90,4 +90,7 @@ dependencies {
     //noinspection GradlePath
     implementation files('libs\\ocr-sdk.jar')
     implementation project(path: ':ocr_ui')
+
+    implementation 'com.tencent.aai:aai:2.1.5:@aar'
+    implementation 'org.slf4j:slf4j-api:1.7.25'
 }
