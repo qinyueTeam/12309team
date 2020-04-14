@@ -140,9 +140,16 @@ public class JczActivity extends BaseActivity {
         return false;
     }
     private void getData(){
-        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL2 + NetConstant.letterShow)
-                .add("username", UserUtils.getUserName())
-                .add("code","110000")
+        Map<String,String> map = new HashMap<>();
+        map.put("username",UserUtils.getUserName());
+        map.put("code","110000");
+        map.put("rows","10");
+        map.put("page",page+"");
+        String aes = Base64Converter.AESEncode(TagConstant.AESKEY, JsonUtils.getInstance().gson.toJson(map));
+        Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL2 + NetConstant.letterList)
+                .add("appId", TagConstant.APPID)
+                .add("code",TagConstant.CODE)
+                .add("data",aes)
                 .asParser(new SimpleParser<BaseDataBean<String>>(){})
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {

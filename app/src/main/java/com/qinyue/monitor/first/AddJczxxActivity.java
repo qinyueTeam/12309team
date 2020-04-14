@@ -300,6 +300,8 @@ public class AddJczxxActivity extends BaseActivity implements ImageSelectGridAda
         String a = Base64Converter.AESEncode(TagConstant.AESKEY, JsonUtils.getInstance().gson.toJson(map));
         Disposable subscribe = RxHttp.postForm(TagConstant.BASEURL2 + NetConstant.saveLetter)
                 .add("data", a)
+                .add("appId",TagConstant.APPID)
+                .add("code",TagConstant.CODE)
                 .asObject(UpDataFileBean2.class)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(s -> {

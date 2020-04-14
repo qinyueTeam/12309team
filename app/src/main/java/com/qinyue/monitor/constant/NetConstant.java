@@ -32,8 +32,10 @@ public class NetConstant {
     public static final String caseDetail = "/rici/caseDetail";
     //文书详情
     public static final String lawDocDetail = "/rici/lawDocDetail";
-    //检察长信箱列表/详情
+    //检察长信箱详情
     public static final String letterShow = "/announceShow/letterShow";
+    //检察长信箱列表
+    public static final String letterList = "/announceShow/letterList";
     //附件上传
     public static final String fileUpload = "/rici/fileUpload";
     //检察长信箱提交
